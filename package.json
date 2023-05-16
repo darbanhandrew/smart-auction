@@ -1,0 +1,47 @@
+{
+  "name": "refine-project",
+  "version": "0.1.0",
+  "private": true,
+  "sideEffects": false,
+  "scripts": {
+    "dev": "remix dev",
+    "build": "remix build",
+    "start": "remix-serve build",
+    "refine": "refine"
+  },
+  "dependencies": {
+    "@ant-design/icons": "^5.0.1",
+    "@refinedev/antd": "^5.7.0",
+    "@refinedev/appwrite": "^6.0.0",
+    "@refinedev/cli": "^2.5.1",
+    "@refinedev/core": "^4.5.8",
+    "@refinedev/inferencer": "^3.1.4",
+    "@refinedev/kbar": "^1.1.0",
+    "@refinedev/remix-router": "^2.1.0",
+    "@remix-run/node": "^1.6.7",
+    "@remix-run/react": "^1.6.7",
+    "@remix-run/serve": "^1.6.7",
+    "antd": "^5.0.5",
+    "antd-jalali": "^1.0.3",
+    "cookie": "^0.5.0",
+    "i18next": "^22.4.15",
+    "i18next-browser-languagedetector": "^7.0.1",
+    "i18next-http-backend": "^2.2.0",
+    "jalaliday": "^2.3.0",
+    "js-cookie": "^3.0.1",
+    "node-appwrite": "^9.0.0",
+    "nookies": "^2.5.2",
+    "react": "^18.0.0",
+    "react-dom": "^18.0.0",
+    "react-i18next": "^12.2.2"
+  },
+  "devDependencies": {
+    "@remix-run/dev": "^1.6.8",
+    "@remix-run/eslint-config": "^1.6.8",
+    "@types/js-cookie": "^3.0.2",
+    "@types/react": "^18.0.0",
+    "@types/react-dom": "^18.0.0",
+    "eslint": "^8.24.0",
+    "typescript": "^4.7.4"
+  }
+}
