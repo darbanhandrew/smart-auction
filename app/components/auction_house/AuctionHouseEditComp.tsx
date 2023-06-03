@@ -130,7 +130,9 @@ export const AuctionHouseEditComp: React.FC<IResourceComponentsProps> = () => {
             value: value ? dayjs(value) : undefined,
           })}
         >
-          <DatePicker />
+                    <DatePicker
+          showTime={{ format:'HH:mm:ss'}}
+           />
         </Form.Item>
       </Form>
     </Edit>

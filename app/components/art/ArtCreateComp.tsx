@@ -16,10 +16,10 @@ export const ArtCreateComp: React.FC<IResourceComponentsProps> = () => {
       image: image.length > 0 ? image[0].uid : undefined,
     });
   };
-  const { selectProps: auctionArtSelectProps } = useSelect({
-    resource: "auction_art",
-    optionLabel: "lot",
-  });
+  // const { selectProps: auctionArtSelectProps } = useSelect({
+  //   resource: "auction_art",
+  //   optionLabel: "lot",
+  // });
 
   const { selectProps: artistSelectProps } = useSelect({
     resource: "artist",
@@ -68,6 +68,12 @@ export const ArtCreateComp: React.FC<IResourceComponentsProps> = () => {
           <Input />
         </Form.Item>
         <Form.Item
+          label="Signature"
+          name={["signature"]}
+        >
+          <Input.TextArea autoSize={{ minRows: 3 }} />
+        </Form.Item>
+        <Form.Item
           label="Date Of Artwork"
           name={["date_of_artwork"]}
           rules={[
@@ -79,7 +85,9 @@ export const ArtCreateComp: React.FC<IResourceComponentsProps> = () => {
             value: value ? dayjs(value) : undefined,
           })}
         >
-          <DatePicker />
+          <DatePicker
+            showTime={{ format: 'HH:mm:ss' }}
+          />
         </Form.Item>
         <UploadImage
           state={image}
@@ -131,17 +139,12 @@ export const ArtCreateComp: React.FC<IResourceComponentsProps> = () => {
         >
           <Select {...artCategorySelectProps} />
         </Form.Item>
-        <Form.Item
+        {/* <Form.Item
           label="Auction Art"
           name={"auction_art"}
-          rules={[
-            {
-              required: true,
-            },
-          ]}
         >
           <Select mode="multiple" {...auctionArtSelectProps} />
-        </Form.Item>
+        </Form.Item> */}
       </Form>
     </Create>
   );

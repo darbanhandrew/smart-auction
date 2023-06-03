@@ -25,13 +25,12 @@ import { ConfigProvider } from "antd";
 import { JalaliLocaleListener } from "antd-jalali";
 import dayjs from "dayjs";
 import jalaliday from "jalaliday";
-
+import styles from "./styles.css";
 export const meta: MetaFunction = () => ({
   charset: "utf-8",
   title: "میزکار حراجی هوشمند",
   viewport: "width=device-width,initial-scale=1",
 });
-
 export default function App() {
   dayjs.extend(jalaliday);
   dayjs().calendar("jalali");
@@ -46,7 +45,13 @@ export default function App() {
         <RefineKbarProvider>
           <ColorModeContextProvider>
             <RefineKbarProvider>
-              <ConfigProvider locale={fa_IR} direction="rtl">
+              <ConfigProvider locale={fa_IR} direction="rtl" theme={
+                {
+                  token: {
+                    fontFamily: "Arthall",
+                  },
+                }
+              }>
                 <JalaliLocaleListener />
                 <Refine
                   routerProvider={routerProvider}
@@ -199,6 +204,13 @@ export default function App() {
                         label: "بیداستپ ها",
                       },
                     },
+                    {
+                      name: "user",
+                      list: "/user/",
+                      meta: {
+                        label: "کاربران",
+                      }
+                    }
                   ]}
                   options={{
                     syncWithLocation: true,
@@ -224,5 +236,7 @@ export default function App() {
 }
 
 export function links() {
-  return [{ rel: "stylesheet", href: resetStyle }];
+  return [{ rel: "stylesheet", href: resetStyle },
+  { rel: "stylesheet", href: styles },
+  ];
 }

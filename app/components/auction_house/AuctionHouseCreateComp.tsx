@@ -98,7 +98,9 @@ export const AuctionHouseCreateComp: React.FC<
             value: value ? dayjs(value) : undefined,
           })}
         >
-          <DatePicker />
+                    <DatePicker
+          showTime={{ format:'HH:mm:ss'}}
+           />
         </Form.Item>
       </Form>
     </Create>

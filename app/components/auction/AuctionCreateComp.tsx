@@ -51,6 +51,15 @@ export const AuctionCreateComp: React.FC<IResourceComponentsProps> = () => {
           <Input />
         </Form.Item>
         <Form.Item
+          label="Auction Type"
+          name={["auction_type"]}
+        >
+          <Select>
+            <Select.Option value="Time_Based">Time Based</Select.Option>
+            <Select.Option value="Series">Series</Select.Option>
+          </Select>
+        </Form.Item>
+        <Form.Item
           label="Start Date"
           name={["start_date"]}
           rules={[
@@ -62,7 +71,9 @@ export const AuctionCreateComp: React.FC<IResourceComponentsProps> = () => {
             value: value ? dayjs(value) : undefined,
           })}
         >
-          <DatePicker />
+          <DatePicker
+            showTime={{ format: 'HH:mm:ss' }}
+          />
         </Form.Item>
         <Form.Item
           label="End Date"
@@ -76,7 +87,9 @@ export const AuctionCreateComp: React.FC<IResourceComponentsProps> = () => {
             value: value ? dayjs(value) : undefined,
           })}
         >
-          <DatePicker />
+          <DatePicker
+            showTime={{ format: 'HH:mm:ss' }}
+          />
         </Form.Item>
         <Form.Item label="Status" name={["status"]}>
           <Select>

@@ -1,4 +1,4 @@
-import { Account, Appwrite, Storage } from "@refinedev/appwrite";
+import { Account, Appwrite, Storage, Functions } from "@refinedev/appwrite";
 
 const APPWRITE_URL = "https://panel.arthl.ir/v1";
 const APPWRITE_PROJECT = "smart_auction";
@@ -9,5 +9,5 @@ const appwriteClient = new Appwrite();
 appwriteClient.setEndpoint(APPWRITE_URL).setProject(APPWRITE_PROJECT);
 const account = new Account(appwriteClient);
 const storage = new Storage(appwriteClient);
-
-export { appwriteClient, account, storage, TOKEN_KEY };
+const functions = new Functions(appwriteClient);
+export { appwriteClient, account, storage, functions, TOKEN_KEY };

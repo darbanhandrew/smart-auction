@@ -47,7 +47,9 @@ export const AuctionArtCreateComp: React.FC<IResourceComponentsProps> = () => {
             value: value ? dayjs(value) : undefined,
           })}
         >
-          <DatePicker />
+                    <DatePicker
+          showTime={{ format:'HH:mm:ss'}}
+           />
         </Form.Item>
         <Form.Item
           label="Auction End Date"
@@ -61,7 +63,9 @@ export const AuctionArtCreateComp: React.FC<IResourceComponentsProps> = () => {
             value: value ? dayjs(value) : undefined,
           })}
         >
-          <DatePicker />
+                    <DatePicker
+          showTime={{ format:'HH:mm:ss'}}
+           />
         </Form.Item>
         <Form.Item
           label="Min Price"
@@ -96,7 +100,7 @@ export const AuctionArtCreateComp: React.FC<IResourceComponentsProps> = () => {
         >
           <Input />
         </Form.Item>
-        <Form.Item
+        {/* <Form.Item
           label="Number of Bids"
           name={["number_of_bids"]}
           rules={[
@@ -106,7 +110,7 @@ export const AuctionArtCreateComp: React.FC<IResourceComponentsProps> = () => {
           ]}
         >
           <Input />
-        </Form.Item>
+        </Form.Item> */}
         <Form.Item
           label="Order"
           name={["order"]}

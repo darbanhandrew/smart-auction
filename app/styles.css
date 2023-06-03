@@ -1,0 +1,9 @@
+@font-face {
+    font-family: 'Arthall';
+    src: local(''),
+        url(./fonts/ArtHall-Normal.woff2) format('woff2'),
+        url(./fonts/ArtHall-Normal.woff) format('woff'),
+        url(./fonts/ArtHall-Normal.eot) format('embedded-opentype');
+    font-weight: normal;
+    font-style: normal;
+}

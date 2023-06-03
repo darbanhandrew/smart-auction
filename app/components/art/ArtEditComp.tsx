@@ -65,9 +65,9 @@ export const ArtEditComp: React.FC<IResourceComponentsProps> = () => {
         onFinish={handleOnFinish}
         initialValues={{
           ...formProps?.initialValues,
-          auction_art: artData?.auction_art?.map(
-            (auctionArt: any) => auctionArt.$id
-          ),
+          // auction_art: artData?.auction_art?.map(
+          //   (auctionArt: any) => auctionArt.$id
+          // ),
           artist: artData?.artist?.$id,
           art_category: artData?.art_category?.$id,
           art_material: artData?.art_material?.$id,
@@ -97,6 +97,12 @@ export const ArtEditComp: React.FC<IResourceComponentsProps> = () => {
           <Input />
         </Form.Item>
         <Form.Item
+          label="Signature"
+          name={["signature"]}
+        >
+          <Input.TextArea autoSize={{ minRows: 3 }} />
+        </Form.Item>
+        <Form.Item
           label="Date Of Artwork"
           name={["date_of_artwork"]}
           rules={[
@@ -108,7 +114,9 @@ export const ArtEditComp: React.FC<IResourceComponentsProps> = () => {
             value: value ? dayjs(value) : undefined,
           })}
         >
-          <DatePicker />
+          <DatePicker
+            showTime={{ format: 'HH:mm:ss' }}
+          />
         </Form.Item>
         <UploadImage
           state={image}
@@ -160,17 +168,12 @@ export const ArtEditComp: React.FC<IResourceComponentsProps> = () => {
         >
           <Select {...artCategorySelectProps} />
         </Form.Item>
-        <Form.Item
+        {/* <Form.Item
           label="Auction Art"
           name={"auction_art"}
-          rules={[
-            {
-              required: true,
-            },
-          ]}
         >
           <Select mode="multiple" {...auctionArtSelectProps} />
-        </Form.Item>
+        </Form.Item> */}
       </Form>
     </Edit>
   );

@@ -62,6 +62,30 @@ export const ArtistEditComp: React.FC<IResourceComponentsProps> = () => {
         >
           <Input />
         </Form.Item>
+        <Form.Item
+          label="Date of Birth"
+          name={["date_of_birth"]}
+          getValueProps={(value) => ({
+            value: value ? dayjs(value) : undefined,
+          })}
+        >
+          <DatePicker />
+        </Form.Item>
+        <Form.Item
+          label="Date of Death"
+          name={["date_of_death"]}
+          getValueProps={(value) => ({
+            value: value ? dayjs(value) : undefined,
+          })}
+        >
+          <DatePicker />
+        </Form.Item>
+        <Form.Item
+          label="Biography"
+          name={["biography"]}
+        >
+          <Input.TextArea autoSize={{ minRows: 5 }} />
+        </Form.Item>
         <h1>
           <b>Image</b>
         </h1>
@@ -84,12 +108,12 @@ export const ArtistEditComp: React.FC<IResourceComponentsProps> = () => {
               artistData?.status === "draft"
                 ? "draft"
                 : artistData?.status === "pending"
-                ? "pending"
-                : artistData?.status === "verified"
-                ? "verified"
-                : artistData?.status === "unverified"
-                ? "unverified"
-                : "draft"
+                  ? "pending"
+                  : artistData?.status === "verified"
+                    ? "verified"
+                    : artistData?.status === "unverified"
+                      ? "unverified"
+                      : "draft"
             }
           >
             <Select.Option value="draft">Draft</Select.Option>
@@ -98,9 +122,9 @@ export const ArtistEditComp: React.FC<IResourceComponentsProps> = () => {
             <Select.Option value="unverified">Unverified</Select.Option>
           </Select>
         </Form.Item>
-        <Form.Item label="# of Artworks" name={["number_of_artworks"]}>
+        {/* <Form.Item label="# of Artworks" name={["number_of_artworks"]}>
           <InputNumber />
-        </Form.Item>
+        </Form.Item> */}
       </Form>
     </Edit>
   );

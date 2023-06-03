@@ -6,6 +6,7 @@ import dayjs from "dayjs";
 import { UploadImage } from "../upload_image/UploadImage";
 import { UploadFile } from "antd/lib/upload";
 import { storage } from "~/utility";
+import { TimePicker } from "antd-jalali";
 
 export const AuctionEditComp: React.FC<IResourceComponentsProps> = () => {
   const { formProps, saveButtonProps, queryResult, onFinish } = useForm();
@@ -39,7 +40,7 @@ export const AuctionEditComp: React.FC<IResourceComponentsProps> = () => {
   const auctionData = queryResult?.data?.data;
   React.useEffect(() => {
     if (auctionData) {
-      auctionData?.gallery &&
+      auctionData?.gallery ?
         setGallery([
           {
             uid: auctionData.gallery,
@@ -49,8 +50,8 @@ export const AuctionEditComp: React.FC<IResourceComponentsProps> = () => {
               .getFilePreview("images", auctionData.gallery, 200)
               .toString(),
           },
-        ]);
-      auctionData?.banner &&
+        ]) : setGallery([]);
+      auctionData?.banner ?
         setBanner([
           {
             uid: auctionData.banner,
@@ -60,8 +61,8 @@ export const AuctionEditComp: React.FC<IResourceComponentsProps> = () => {
               .getFilePreview("images", auctionData.banner, 200)
               .toString(),
           },
-        ]);
-      auctionData?.thumbnails &&
+        ]) : setBanner([]);
+      auctionData?.thumbnails ?
         setThumbnails([
           {
             uid: auctionData.thumbnails,
@@ -71,7 +72,7 @@ export const AuctionEditComp: React.FC<IResourceComponentsProps> = () => {
               .getFilePreview("images", auctionData.thumbnails, 200)
               .toString(),
           },
-        ]);
+        ]) : setThumbnails([]);
     }
   }, [auctionData]);
 
@@ -80,7 +81,7 @@ export const AuctionEditComp: React.FC<IResourceComponentsProps> = () => {
       saveButtonProps={saveButtonProps}
       //change the title Edit to Auction Edit
       title="ویرایش حراجی"
-      //change the edit part of breadcrumb
+    //change the edit part of breadcrumb
     >
       <Form
         {...formProps}
@@ -111,6 +112,15 @@ export const AuctionEditComp: React.FC<IResourceComponentsProps> = () => {
           <Input />
         </Form.Item>
         <Form.Item
+          label="Auction Type"
+          name={["auction_type"]}
+        >
+          <Select>
+            <Select.Option value="Time_Based">Time Based</Select.Option>
+            <Select.Option value="Series">Series</Select.Option>
+          </Select>
+        </Form.Item>
+        <Form.Item
           label="Start Date"
           name={["start_date"]}
           rules={[
@@ -122,7 +132,9 @@ export const AuctionEditComp: React.FC<IResourceComponentsProps> = () => {
             value: value ? dayjs(value) : undefined,
           })}
         >
-          <DatePicker />
+          <DatePicker
+            showTime={{ format: 'HH:mm:ss' }}
+          />
         </Form.Item>
         <Form.Item
           label="End Date"
@@ -136,7 +148,9 @@ export const AuctionEditComp: React.FC<IResourceComponentsProps> = () => {
             value: value ? dayjs(value) : undefined,
           })}
         >
-          <DatePicker />
+          <DatePicker
+            showTime={{ format: 'HH:mm:ss' }}
+          />
         </Form.Item>
         <Form.Item label="Status" name={["status"]}>
           <Select>

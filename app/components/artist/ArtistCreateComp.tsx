@@ -1,9 +1,10 @@
 import React from "react";
 import { IResourceComponentsProps } from "@refinedev/core";
 import { Create, useForm } from "@refinedev/antd";
-import { Form, Input,Select, InputNumber } from "antd";
+import { Form, Input, Select, InputNumber, DatePicker } from "antd";
 import type { UploadFile } from "antd/es/upload/interface";
 import { UploadImage } from "../upload_image/UploadImage";
+import dayjs from "dayjs";
 export const ArtistCreateComp: React.FC<IResourceComponentsProps> = () => {
   const { formProps, saveButtonProps, queryResult, onFinish } = useForm();
   const [imageList, setImageList] = React.useState<UploadFile[]>([]);
@@ -29,6 +30,30 @@ export const ArtistCreateComp: React.FC<IResourceComponentsProps> = () => {
         >
           <Input />
         </Form.Item>
+        <Form.Item
+          label="Date of Birth"
+          name={["date_of_birth"]}
+          getValueProps={(value) => ({
+            value: value ? dayjs(value) : undefined,
+          })}
+        >
+          <DatePicker />
+        </Form.Item>
+        <Form.Item
+          label="Date of Death"
+          name={["date_of_death"]}
+          getValueProps={(value) => ({
+            value: value ? dayjs(value) : undefined,
+          })}
+        >
+          <DatePicker />
+        </Form.Item>
+        <Form.Item
+          label="Biography"
+          name={["biography"]}
+        >
+          <Input.TextArea autoSize={{ minRows: 5 }} />
+        </Form.Item>
         <h1>
           <b>Image</b>
         </h1>
@@ -53,9 +78,9 @@ export const ArtistCreateComp: React.FC<IResourceComponentsProps> = () => {
             <Select.Option value="unverified">Unverified</Select.Option>
           </Select>
         </Form.Item>
-        <Form.Item label="# of Artworks" name={["number_of_artworks"]}>
+        {/* <Form.Item label="# of Artworks" name={["number_of_artworks"]}>
           <InputNumber />
-        </Form.Item>
+        </Form.Item> */}
       </Form>
     </Create>
   );

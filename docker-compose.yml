@@ -26,14 +26,28 @@ services:
       - "/var/run/docker.sock:/var/run/docker.sock:ro"
   remix-server:
     build:
-      context: .
+      context: ./smart-auction/
       dockerfile: Dockerfile
-    container_name: remix-server
+    container_name: remix-server0
     labels:
       - "traefik.enable=true"
       - "traefik.http.routers.remix-server.rule=Host(`adm.arthl.ir`)"
       - "traefik.http.routers.remix-server.entrypoints=websecure"
       - "traefik.http.routers.remix-server.tls.certresolver=myresolver"
+      - "traefik.http.middlewares.redirect-to-https.redirectscheme.scheme=https"
+      - "traefik.http.routers.redirs.rule=hostregexp(`{host:.+}`)"
+      - "traefik.http.routers.redirs.entrypoints=web"
+      - "traefik.http.routers.redirs.middlewares=redirect-to-https"
+  nextjs:
+    build:
+      context: ./arthibition/
+      dockerfile: Dockerfile
+    container_name: nextjs
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.nextjs.rule=Host(`hello.arthl.ir`)"
+      - "traefik.http.routers.nextjs.entrypoints=websecure"
+      - "traefik.http.routers.nextjs.tls.certresolver=myresolver"
       - "traefik.http.middlewares.redirect-to-https.redirectscheme.scheme=https"
       - "traefik.http.routers.redirs.rule=hostregexp(`{host:.+}`)"
       - "traefik.http.routers.redirs.entrypoints=web"

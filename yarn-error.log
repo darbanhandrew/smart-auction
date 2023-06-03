@@ -1,8 +1,8 @@
 Arguments: 
-  C:\Program Files\nodejs\node.exe C:\Program Files (x86)\Yarn\bin\yarn.js add @types/dayjs-jalali
+  C:\Program Files\nodejs\node.exe C:\Program Files (x86)\Yarn\bin\yarn.js add remix/dev@nightly
 
 PATH: 
-  C:\Python310\Scripts\;C:\Python310\;C:\Program Files (x86)\Common Files\Intel\Shared Libraries\redist\intel64\compiler;C:\Windows\system32;C:\Windows;C:\Windows\System32\Wbem;C:\Windows\System32\WindowsPowerShell\v1.0\;C:\Windows\System32\OpenSSH\;C:\Program Files\dotnet\;C:\Program Files\Git\cmd;C:\Program Files\nodejs\;C:\ProgramData\chocolatey\bin;C:\Program Files\PuTTY\;C:\Program Files (x86)\Yarn\bin\;C:\user\local;C:\Users\darba\AppData\Roaming\npm;;C:\Program Files\Docker\Docker\resources\bin;C:\Program Files (x86)\NVIDIA Corporation\PhysX\Common;C:\Users\darba\AppData\Local\Microsoft\WindowsApps;C:\Users\darba\AppData\Local\Programs\Microsoft VS Code\bin;C:\Program Files (x86)\EShare\;C:\Users\darba\AppData\Local\Yarn\bin;C:\src\flutter\bin;C:\Users\darba\AppData\Local\Appwrite
+  C:\Python310\Scripts\;C:\Python310\;C:\Program Files (x86)\Common Files\Intel\Shared Libraries\redist\intel64\compiler;C:\Windows\system32;C:\Windows;C:\Windows\System32\Wbem;C:\Windows\System32\WindowsPowerShell\v1.0\;C:\Windows\System32\OpenSSH\;C:\Program Files\dotnet\;C:\Program Files\Git\cmd;C:\Program Files\nodejs\;C:\ProgramData\chocolatey\bin;C:\Program Files\PuTTY\;C:\Program Files (x86)\Yarn\bin\;C:\user\local;C:\Users\darba\AppData\Roaming\npm;;C:\Program Files\Docker\Docker\resources\bin;C:\Program Files (x86)\NVIDIA Corporation\PhysX\Common;C:\Users\darba\AppData\Local\Microsoft\WindowsApps;C:\Users\darba\AppData\Local\Programs\Microsoft VS Code\bin;C:\Program Files (x86)\EShare\;C:\Users\darba\AppData\Roaming\npm;C:\Users\darba\AppData\Local\Yarn\bin;C:\src\flutter\bin;;C:\Users\darba\AppData\Local\Appwrite;C:\Users\darba\AppData\Local\Programs\Microsoft VS Code Insiders\bin
 
 Yarn version: 
   1.22.19
@@ -14,8 +14,8 @@ Platform:
   win32 x64
 
 Trace: 
-  Error: https://registry.yarnpkg.com/@types%2fdayjs-jalali: Not found
-      at params.callback [as _callback] (C:\Program Files (x86)\Yarn\lib\cli.js:66145:18)
+  Error: https://registry.yarnpkg.com/remix%2fdev: Request "https://registry.yarnpkg.com/remix%2fdev" returned a 405
+      at params.callback [as _callback] (C:\Program Files (x86)\Yarn\lib\cli.js:66154:18)
       at self.callback (C:\Program Files (x86)\Yarn\lib\cli.js:140890:22)
       at Request.emit (node:events:513:28)
       at Request.<anonymous> (C:\Program Files (x86)\Yarn\lib\cli.js:141862:10)
@@ -53,7 +53,6 @@ npm manifest:
       "antd": "^5.0.5",
       "antd-jalali": "^1.0.3",
       "cookie": "^0.5.0",
-      "dayjs-jalali": "^0.0.2",
       "i18next": "^22.4.15",
       "i18next-browser-languagedetector": "^7.0.1",
       "i18next-http-backend": "^2.2.0",
@@ -3567,13 +3566,6 @@ Lockfile:
     dependencies:
       "@babel/runtime" "^7.21.0"
   
-  dayjs-jalali@^0.0.2:
-    version "0.0.2"
-    resolved "https://registry.yarnpkg.com/dayjs-jalali/-/dayjs-jalali-0.0.2.tgz#b7e1bf1c66c094bd5c2303d30d09aff7ee9cf92f"
-    integrity sha512-pwsgYXAES7Jziyv+6l72t3ovoXRC4QTr0zjlCkbaWSvTxmgdnGOhp6nWIXO5b+fmCv0COWfYs7wwPP38fJrNVA==
-    dependencies:
-      jalaali-js "^1.1.0"
-  
   dayjs@1.x, dayjs@^1.10.7, dayjs@^1.10.8, dayjs@^1.11.1, dayjs@^1.11.4:
     version "1.11.7"
     resolved "https://registry.yarnpkg.com/dayjs/-/dayjs-1.11.7.tgz#4b296922642f70999544d1144a2c25730fce63e2"
@@ -5868,11 +5860,6 @@ Lockfile:
     integrity sha512-TYgVnXWeESVmQSg4GLVbalmQ+B4NPi/H4eWxqALKj63KsUrcu301YDjBqaOw3h+cbak7Na4Xyps3BiptHtxTfg==
     dependencies:
       form-data "^2.3.2"
-  
-  jalaali-js@^1.1.0:
-    version "1.2.6"
-    resolved "https://registry.yarnpkg.com/jalaali-js/-/jalaali-js-1.2.6.tgz#f4ee4bf686ed32bb9656f101225be4b7a1c3fd21"
-    integrity sha512-io974va+Qyu+UfuVX3UIAgJlxLhAMx9Y8VMfh+IG00Js7hXQo1qNQuwSiSa0xxco0SVgx5HWNkaiCcV+aZ8WPw==
   
   jalaliday@^2.3.0:
     version "2.3.0"

@@ -1,0 +1,25 @@
+@font-face {
+    font-family: 'Arthall';
+    src: url('./fonts/ArtHall-Normal.woff2') format('woff2'),
+        url('./fonts/ArtHall-Normal.woff') format('woff'),
+        url('./fonts/ArtHall-Normal.eot') format('embedded-opentype');
+    font-weight: normal;
+    font-style: normal;
+}
+
+body {
+    font-family: 'Arthall', sans-serif;
+}
+
+body * {
+    font-family: 'Arthall', sans-serif;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    font-family: 'My Custom Font', serif;
+}
