@@ -5,8 +5,8 @@ import { functions } from '~/utility';
 export default function UserCreateComp() {
     const handleOnFinish = async (values: any) => {
         const result = await functions.createExecution("userFunctions", JSON.stringify({
-            "method": "create",
-            "body": {
+            type: "create",
+            body: {
                 //generate
                 userId: ID.unique(),
                 ...values

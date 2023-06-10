@@ -71,54 +71,6 @@ export default function App() {
                         label: "داشبورد",
                       },
                     },
-                    //auction
-                    {
-                      name: "auction",
-                      list: "/auction/",
-                      create: "/auction/create",
-                      edit: "/auction/edit/:id",
-                      show: "/auction/show/:id",
-                      meta: {
-                        canDelete: true,
-                        label: "حراجی ها",
-                      },
-                    },
-                    //auction_house resource
-                    {
-                      name: "auction_house",
-                      list: "/auction_house/",
-                      create: "/auction_house/create",
-                      edit: "/auction_house/edit/:id",
-                      show: "/auction_house/show/:id",
-                      meta: {
-                        canDelete: true,
-                        label: "خانه حراجی",
-                      },
-                    },
-                    //auction_art resource
-                    {
-                      name: "auction_art",
-                      list: "/auction_art/",
-                      create: "/auction_art/create",
-                      edit: "/auction_art/edit/:id",
-                      show: "/auction_art/show/:id",
-                      meta: {
-                        canDelete: true,
-                        label: "آثار حراجی",
-                      },
-                    },
-                    //art resource
-                    {
-                      name: "art",
-                      list: "/art/",
-                      create: "/art/create",
-                      edit: "/art/edit/:id",
-                      show: "/art/show/:id",
-                      meta: {
-                        canDelete: true,
-                        label: "آثار",
-                      },
-                    },
                     //artist resource
                     {
                       name: "artist",
@@ -131,17 +83,69 @@ export default function App() {
                         label: "هنرمندان",
                       },
                     },
-
-                    //bid resource
                     {
-                      name: "bid",
-                      list: "/bid/",
-                      create: "/bid/create",
-                      edit: "/bid/edit/:id",
-                      show: "/bid/show/:id",
+                      name: "Auctions",
+                      meta: {
+                        label: "اطلاعات حراج ها"
+                      }
+                    },
+                    //auction
+                    {
+                      name: "auction",
+                      list: "/auction/",
+                      create: "/auction/create",
+                      edit: "/auction/edit/:id",
+                      show: "/auction/show/:id",
                       meta: {
                         canDelete: true,
-                        label: "پیشنهادات",
+                        label: "حراجی ها",
+                        parent: "Auctions"
+                      },
+                    },
+                    //auction_house resource
+                    {
+                      name: "auction_house",
+                      list: "/auction_house/",
+                      create: "/auction_house/create",
+                      edit: "/auction_house/edit/:id",
+                      show: "/auction_house/show/:id",
+                      meta: {
+                        canDelete: true,
+                        label: "خانه حراجی",
+                        parent: "Auctions"
+                      },
+                    },
+                    //auction_art resource
+                    {
+                      name: "auction_art",
+                      list: "/auction_art/",
+                      create: "/auction_art/create",
+                      edit: "/auction_art/edit/:id",
+                      show: "/auction_art/show/:id",
+                      meta: {
+                        canDelete: true,
+                        label: "آثار حراجی",
+                        parent: "Auctions"
+                      },
+                    },
+                    // multi level menu 
+                    {
+                      name: "Arts",
+                      meta: {
+                        label: "اطلاعات آثار هنری"
+                      }
+                    },
+                    //art resource
+                    {
+                      name: "art",
+                      list: "/art/",
+                      create: "/art/create",
+                      edit: "/art/edit/:id",
+                      show: "/art/show/:id",
+                      meta: {
+                        canDelete: true,
+                        label: "آثار",
+                        parent: "Arts"
                       },
                     },
                     //art_material resource
@@ -154,6 +158,7 @@ export default function App() {
                       meta: {
                         canDelete: true,
                         label: "مواد",
+                        parent: "Arts"
                       },
                     },
                     //art_technique resource
@@ -166,6 +171,7 @@ export default function App() {
                       meta: {
                         canDelete: true,
                         label: "تکنیک ها",
+                        parent: "Arts"
                       },
                     },
                     //art_category resource
@@ -178,6 +184,26 @@ export default function App() {
                       meta: {
                         canDelete: true,
                         label: "دسته بندی ها",
+                        parent: "Arts"
+                      },
+                    },
+                    {
+                      name: "Bids",
+                      meta: {
+                        label: "اطلاعات پیشنهادات"
+                      }
+                    },
+                    //bid resource
+                    {
+                      name: "bid",
+                      list: "/bid/",
+                      create: "/bid/create",
+                      edit: "/bid/edit/:id",
+                      show: "/bid/show/:id",
+                      meta: {
+                        canDelete: true,
+                        label: "پیشنهادات",
+                        parent: "Bids"
                       },
                     },
                     //bid_step_category
@@ -190,6 +216,7 @@ export default function App() {
                       meta: {
                         canDelete: true,
                         label: "گروه بید استپ ها",
+                        parent: "Bids"
                       },
                     },
                     //bid_step
@@ -202,6 +229,37 @@ export default function App() {
                       meta: {
                         canDelete: true,
                         label: "بیداستپ ها",
+                        parent: "Bids"
+                      },
+                    },
+                    {
+                      name: "Users&Requests",
+                      meta: {
+                        label: "اطلاعات کاربران و درخواست ها"
+                      },
+                    },
+                    {
+                      name: "user_auction_request",
+                      list: "/user_auction_request/",
+                      create: "/user_auction_request/create",
+                      edit: "/user_auction_request/edit/:id",
+                      show: "/user_auction_request/show/:id",
+                      meta: {
+                        canDelete: true,
+                        label: "درخواست های کاربران",
+                        parent: "Users&Requests"
+                      },
+                    },
+                    {
+                      name: "user_profile",
+                      list: "/user_profile/",
+                      create: "/user_profile/create",
+                      edit: "/user_profile/edit/:id",
+                      show: "/user_profile/show/:id",
+                      meta: {
+                        canDelete: true,
+                        label: "پروفایل کاربران",
+                        parent: "Users&Requests"
                       },
                     },
                     {
@@ -209,6 +267,7 @@ export default function App() {
                       list: "/user/",
                       meta: {
                         label: "کاربران",
+                        parent: "Users&Requests"
                       }
                     }
                   ]}

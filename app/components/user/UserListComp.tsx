@@ -81,7 +81,7 @@ const columns = [
         <Link to={`/user/edit/${record.$id}`}><Button type="primary" icon={<EditOutlined />}>Edit</Button></Link><Space />
         <Link to={`/user/delete/${record.$id}`}><Button type="primary" danger icon={<DeleteOutlined />}>Delete</Button></Link><Space />
         <Link to={`/user/show/${record.$id}`}><Button type="dashed" icon={<EyeOutlined />}>Show</Button></Link><Space />
-        <Link to={`/profile/edit/${record.prefs.profile_id}`}><Button type="ghost" icon={<ProfileOutlined />}>Show Profile</Button></Link><Space />
+        <Link to={`/user_profile/edit/${record.prefs.profile_id}`}><Button type="ghost" icon={<ProfileOutlined />}>Show Profile</Button></Link><Space />
       </Space>
     )
   }

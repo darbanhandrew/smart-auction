@@ -1,0 +1,94 @@
+import React from "react";
+import { IResourceComponentsProps } from "@refinedev/core";
+import { Edit, useForm, useSelect } from "@refinedev/antd";
+import { Form, Input, Select, DatePicker } from "antd";
+import dayjs from "dayjs";
+
+export const UserAuctionRequestEditComp: React.FC<IResourceComponentsProps> = () => {
+    const { formProps, saveButtonProps, queryResult } = useForm();
+
+    const userAuctionRequestData = queryResult?.data?.data;
+    const { selectProps: auctionSelectProps } = useSelect({
+        resource: "auction",
+        optionLabel: "name",
+    });
+    return (
+        <Edit saveButtonProps={saveButtonProps}>
+            <Form {...formProps} layout="vertical" initialValues={
+                {
+                    ...formProps?.initialValues,
+                    auction: userAuctionRequestData?.auction?.$id,
+                }} >
+                <h1>
+                    {userAuctionRequestData?.id}
+                </h1>
+                <Form.Item
+                    label="Status"
+                    name={["status"]}
+                    rules={[
+                        {
+                            required: true,
+                        },
+                    ]}
+                >
+                    <Select>
+                        <Select.Option value="pending">Pending</Select.Option>
+                        <Select.Option value="accepted">Accepted</Select.Option>
+                        <Select.Option value="rejected">Rejected</Select.Option>
+                    </Select>
+                </Form.Item>
+                <Form.Item
+                    label="Note"
+                    name={["note"]}
+                >
+                    <Input />
+                </Form.Item>
+                <Form.Item
+                    label="User"
+                    name={"user_id"}
+                >
+                    <Input />
+                </Form.Item>
+                <Form.Item
+                    label="$created At"
+                    name={["$createdAt"]}
+                    rules={[
+                        {
+                            required: true,
+                        },
+                    ]}
+                    getValueProps={(value) => ({
+                        value: value ? dayjs(value) : undefined,
+                    })}
+                >
+                    <DatePicker />
+                </Form.Item>
+                <Form.Item
+                    label="$updated At"
+                    name={["$updatedAt"]}
+                    rules={[
+                        {
+                            required: true,
+                        },
+                    ]}
+                    getValueProps={(value) => ({
+                        value: value ? dayjs(value) : undefined,
+                    })}
+                >
+                    <DatePicker />
+                </Form.Item>
+                <Form.Item
+                    label="Auction"
+                    name={["auction", "name"]}
+                    rules={[
+                        {
+                            required: true,
+                        },
+                    ]}
+                >
+                    <Select {...auctionSelectProps} />
+                </Form.Item>
+            </Form>
+        </Edit >
+    );
+};
