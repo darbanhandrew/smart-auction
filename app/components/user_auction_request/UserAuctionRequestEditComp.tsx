@@ -3,10 +3,11 @@ import { IResourceComponentsProps } from "@refinedev/core";
 import { Edit, useForm, useSelect } from "@refinedev/antd";
 import { Form, Input, Select, DatePicker } from "antd";
 import dayjs from "dayjs";
+import { User } from "~/utility/UserType";
 
-export const UserAuctionRequestEditComp: React.FC<IResourceComponentsProps> = () => {
+export function UserAuctionRequestEditComp(data: any) {
     const { formProps, saveButtonProps, queryResult } = useForm();
-
+    const users = JSON.parse(data.data).users as User[];
     const userAuctionRequestData = queryResult?.data?.data;
     const { selectProps: auctionSelectProps } = useSelect({
         resource: "auction",
@@ -14,11 +15,10 @@ export const UserAuctionRequestEditComp: React.FC<IResourceComponentsProps> = ()
     });
     return (
         <Edit saveButtonProps={saveButtonProps}>
-            <Form {...formProps} layout="vertical" initialValues={
-                {
-                    ...formProps?.initialValues,
-                    auction: userAuctionRequestData?.auction?.$id,
-                }} >
+            <Form {...formProps} layout="vertical" initialValues={{
+                ...formProps?.initialValues,
+                auction: userAuctionRequestData?.auction?.$id,
+            }}>
                 <h1>
                     {userAuctionRequestData?.id}
                 </h1>
@@ -45,37 +45,32 @@ export const UserAuctionRequestEditComp: React.FC<IResourceComponentsProps> = ()
                 </Form.Item>
                 <Form.Item
                     label="User"
-                    name={"user_id"}
+                    name={["user_id"]}
+                    rules={[
+                        {
+                            required: true,
+                        },
+                    ]}
+                >
+                    <Select
+                        showSearch
+                    >
+                        {users.map((user) => (
+                            <Select.Option key={user.$id} value={user.$id}>{`${user.name}-${user.phone}`}</Select.Option>
+                        ))}
+                    </Select>
+                </Form.Item>
+                <Form.Item
+                    label="نام معرف"
+                    name={["referee_name"]}
                 >
                     <Input />
                 </Form.Item>
                 <Form.Item
-                    label="$created At"
-                    name={["$createdAt"]}
-                    rules={[
-                        {
-                            required: true,
-                        },
-                    ]}
-                    getValueProps={(value) => ({
-                        value: value ? dayjs(value) : undefined,
-                    })}
+                    label="شماره تلفن معرف"
+                    name={["referee_phone"]}
                 >
-                    <DatePicker />
-                </Form.Item>
-                <Form.Item
-                    label="$updated At"
-                    name={["$updatedAt"]}
-                    rules={[
-                        {
-                            required: true,
-                        },
-                    ]}
-                    getValueProps={(value) => ({
-                        value: value ? dayjs(value) : undefined,
-                    })}
-                >
-                    <DatePicker />
+                    <Input />
                 </Form.Item>
                 <Form.Item
                     label="Auction"
@@ -89,6 +84,6 @@ export const UserAuctionRequestEditComp: React.FC<IResourceComponentsProps> = ()
                     <Select {...auctionSelectProps} />
                 </Form.Item>
             </Form>
-        </Edit >
+        </Edit>
     );
-};
+}

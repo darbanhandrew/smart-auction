@@ -20,7 +20,78 @@ import { EditOutlined, DeleteOutlined, EyeOutlined, ProfileOutlined, PlusCircleO
       emailVerification: false,
       phoneVerification: true,
       prefs: [Object]
-    }
+import React from "react";
+import { IResourceComponentsProps } from "@refinedev/core";
+import { Edit, useForm } from "@refinedev/antd";
+import { Form, Input } from "antd";
+import dayjs from "dayjs";
+
+type User = {
+    $id: string;
+    $createdAt: string;
+    $updatedAt: string;
+    name: string;
+    registration: string;
+    status: boolean;
+    passwordUpdate: string;
+    email: string;
+    phone: string;
+    emailVerification: boolean;
+    phoneVerification: boolean;
+    prefs: {
+        profile_id: string;
+        code: string;
+    };
+};
+
+    }<User>props) => {
+    const { formProps, saveButtonProps, queryResult } = useForm();
+
+    const userProfileData = queryResult?.?.data;
+
+    return (
+        <Edit saveButtonProps={saveButtonProps}>
+            <Form {...formProps} layout="vertical">
+                <h1>
+                    {userProfileData?.id} - {userProfileData?.phone_number}
+                </h1>
+                <Form.Item
+                    label="Phone Number"
+                    name={["phone_number"]}
+                    rules={[
+                        {
+                            required: true,
+                        },
+                    ]}
+                >
+                    <Input />
+                </Form.Item>
+                <Form.Item
+                    label="Email"
+                    name={["email"]}
+                    rules={[
+                        {
+                            required: true,
+                        },
+                    ]}
+                >
+                    <Input />
+                </Form.Item>
+                <Form.Item
+                    label="User"
+                    name={"user_id"}
+                    rules={[
+                        {
+                            required: true,
+                        },
+                    ]}
+                >
+                    <Input />
+                </Form.Item>
+            </Form>
+        </Edit>
+    );
+};
 generate columns based on data structure above */
 type User = {
   $id: string;
