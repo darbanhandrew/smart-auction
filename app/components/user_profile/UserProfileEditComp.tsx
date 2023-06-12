@@ -136,6 +136,7 @@ export function UserProfileEditComp(data: any) {
                     setState={(state) => setNationalIdImage(state)}
                     name="national_id_image"
                     maxCount={1}
+                    bucketId="national_card"
                 />
                 <Form.Item
                     label="Status"

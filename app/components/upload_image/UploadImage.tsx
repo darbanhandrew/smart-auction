@@ -15,6 +15,7 @@ interface IUploadImageProps {
   multiple?: boolean;
   listType?: UploadListType;
   maxCount?: number;
+  bucketId?: string;
 }
 export const UploadImage: React.FC<IUploadImageProps> = ({
   state,
@@ -23,6 +24,7 @@ export const UploadImage: React.FC<IUploadImageProps> = ({
   multiple = false,
   listType = "picture",
   maxCount = 1,
+  bucketId = "images",
 }) => {
   const uploadFileAction = async (file: File) => {
     //generate a random id
@@ -67,8 +69,8 @@ export const UploadImage: React.FC<IUploadImageProps> = ({
       maxCount={maxCount}
       action={uploadFileAction}
       onRemove={(file: UploadFile<any>) => {
-        if(file.status ==="done")
-        storage.deleteFile("images", file.uid);
+        if (file.status === "done")
+          storage.deleteFile("images", file.uid);
         setState(
           state.filter((f) => {
             return f.uid !== file.uid;
