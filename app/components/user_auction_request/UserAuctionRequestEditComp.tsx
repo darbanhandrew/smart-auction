@@ -72,7 +72,7 @@ export function UserAuctionRequestEditComp(data: any) {
                 >
                     <Input />
                 </Form.Item>
-                <Form.Item
+                {/* <Form.Item
                     label="Auction"
                     name={["auction", "name"]}
                     rules={[
@@ -82,7 +82,10 @@ export function UserAuctionRequestEditComp(data: any) {
                     ]}
                 >
                     <Select {...auctionSelectProps} />
-                </Form.Item>
+                </Form.Item> */}
+                <h1>
+                    {userAuctionRequestData?.auction?.name}
+                </h1>
             </Form>
         </Edit>
     );
