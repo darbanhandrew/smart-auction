@@ -37,7 +37,7 @@ export const UploadImage: React.FC<IUploadImageProps> = ({
         status: "uploading",
       },
     ]);
-    const response = storage.createFile("images", ID.unique(), file);
+    const response = storage.createFile(bucketId, ID.unique(), file);
     response
       .then((res) => {
         setState([
@@ -46,7 +46,7 @@ export const UploadImage: React.FC<IUploadImageProps> = ({
             uid: res.$id,
             name: res.$id,
             status: "done",
-            url: storage.getFilePreview("images", res.$id, 200).toString(),
+            url: storage.getFilePreview(bucketId, res.$id, 200).toString(),
           },
         ]);
       })
@@ -70,7 +70,7 @@ export const UploadImage: React.FC<IUploadImageProps> = ({
       action={uploadFileAction}
       onRemove={(file: UploadFile<any>) => {
         if (file.status === "done")
-          storage.deleteFile("images", file.uid);
+          storage.deleteFile(bucketId, file.uid);
         setState(
           state.filter((f) => {
             return f.uid !== file.uid;
