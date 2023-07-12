@@ -24,9 +24,7 @@ export const BidListComp: React.FC<IResourceComponentsProps> = () => {
 
         <Table.Column
           title="Auction Art"
-          render={(value: any) => {
-            return value.auction_art.lot;
-          }}
+          dataIndex={["auction_art", "lot"]}
         />
         <Table.Column dataIndex={["user_id"]} title="User Id" />
         <Table.Column
