@@ -42,7 +42,7 @@ export function UserProfileEditComp(data: any) {
                 name: userProfileData.national_id_image,
                 status: "done",
                 url: storage
-                    .getFilePreview("images", userProfileData.national_id_image, 500)
+                    .getFilePreview("national_card", userProfileData.national_id_image, 500)
                     .toString(),
             }]);
         }
