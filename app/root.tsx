@@ -32,34 +32,34 @@ export const meta: MetaFunction = () => ({
   viewport: "width=device-width,initial-scale=1",
 });
 
-let COOKIE_DOMAIN = "adm.smartauctionhouse.com";
+// let COOKIE_DOMAIN = "adm.smartauctionhouse.com";
 
-if (process.env.NODE_ENV === "development") {
-  COOKIE_DOMAIN = "localhost";
-}
-function setCookieDomain() {
-  if (typeof document === "undefined") {
-    return;
-  }
+// if (process.env.NODE_ENV === "development") {
+//   COOKIE_DOMAIN = "localhost";
+// }
+// function setCookieDomain() {
+//   if (typeof document === "undefined") {
+//     return;
+//   }
 
-  Object.defineProperty(document, "cookie", {
-    get() {
-      return this.cookieValue;
-    },
-    set(value) {
-      const cookieParts = value.split(";");
-      const cookieName = cookieParts[0].split("=")[0];
-      const cookieValue = cookieParts[0].split("=")[1];
-      const cookieAttributes = cookieParts.slice(1).join(";");
+//   Object.defineProperty(document, "cookie", {
+//     get() {
+//       return this.cookieValue;
+//     },
+//     set(value) {
+//       const cookieParts = value.split(";");
+//       const cookieName = cookieParts[0].split("=")[0];
+//       const cookieValue = cookieParts[0].split("=")[1];
+//       const cookieAttributes = cookieParts.slice(1).join(";");
 
-      this.cookieValue = `${cookieName}=${cookieValue}; domain=${COOKIE_DOMAIN}; ${cookieAttributes}`;
-    },
-  });
-}
+//       this.cookieValue = `${cookieName}=${cookieValue}; domain=${COOKIE_DOMAIN}; ${cookieAttributes}`;
+//     },
+//   });
+// }
 export default function App() {
   dayjs.extend(jalaliday);
   dayjs().calendar("jalali");
-  setCookieDomain();
+  // setCookieDomain();
   return (
     <html lang="en">
       <head>
