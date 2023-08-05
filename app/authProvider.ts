@@ -9,6 +9,8 @@ if (process.env.NODE_ENV === "development") {
   COOKIE_DOMAIN = "localhost";
 }
 
+const cookies = Cookies.withAttributes({ domain: COOKIE_DOMAIN });
+
 export const authProvider: AuthBindings = {
   login: async ({ email, password }) => {
     try {
@@ -17,10 +19,7 @@ export const authProvider: AuthBindings = {
       const { jwt } = await account.createJWT();
 
       if (jwt) {
-        Cookies.set(TOKEN_KEY, jwt,
-          {
-            domain: COOKIE_DOMAIN,
-          });
+        cookies.set(TOKEN_KEY, jwt);
       }
 
       return {
@@ -47,7 +46,7 @@ export const authProvider: AuthBindings = {
         error,
       };
     }
-    Cookies.remove(TOKEN_KEY);
+    cookies.remove(TOKEN_KEY);
     appwriteClient.setJWT("");
 
     return {
@@ -67,7 +66,7 @@ export const authProvider: AuthBindings = {
       const parsedCookie = cookie.parse(request.headers.get("Cookie"));
       token = parsedCookie[TOKEN_KEY];
     } else {
-      const parsedCookie = Cookies.get(TOKEN_KEY);
+      const parsedCookie = cookies.get(TOKEN_KEY);
       token = parsedCookie ? JSON.parse(parsedCookie) : undefined;
     }
 
