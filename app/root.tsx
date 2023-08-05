@@ -31,10 +31,32 @@ export const meta: MetaFunction = () => ({
   title: "میزکار حراجی هوشمند",
   viewport: "width=device-width,initial-scale=1",
 });
+
+let COOKIE_DOMAIN = "adm.smartauctionhouse.com";
+
+if (process.env.NODE_ENV === "development") {
+  COOKIE_DOMAIN = "localhost";
+}
+
+function setCookieDomain() {
+  Object.defineProperty(document, "cookie", {
+    get() {
+      return this.cookieValue;
+    },
+    set(value) {
+      const cookieParts = value.split(";");
+      const cookieName = cookieParts[0].split("=")[0];
+      const cookieValue = cookieParts[0].split("=")[1];
+      const cookieAttributes = cookieParts.slice(1).join(";");
+
+      this.cookieValue = `${cookieName}=${cookieValue}; domain=${COOKIE_DOMAIN}; ${cookieAttributes}`;
+    },
+  });
+}
 export default function App() {
   dayjs.extend(jalaliday);
   dayjs().calendar("jalali");
-
+  setCookieDomain();
   return (
     <html lang="en">
       <head>
