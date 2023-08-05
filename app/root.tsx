@@ -37,8 +37,11 @@ let COOKIE_DOMAIN = "adm.smartauctionhouse.com";
 if (process.env.NODE_ENV === "development") {
   COOKIE_DOMAIN = "localhost";
 }
-
 function setCookieDomain() {
+  if (typeof document === "undefined") {
+    return;
+  }
+
   Object.defineProperty(document, "cookie", {
     get() {
       return this.cookieValue;
