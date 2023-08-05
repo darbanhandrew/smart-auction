@@ -9,7 +9,7 @@ if (process.env.NODE_ENV === "development") {
   COOKIE_DOMAIN = "localhost";
 }
 
-const cookies = Cookies.withAttributes({ domain: COOKIE_DOMAIN, sameSite: "strict", secure: true });
+const cookies = Cookies.withAttributes({ domain: COOKIE_DOMAIN, sameSite: "strict" });
 
 export const authProvider: AuthBindings = {
   login: async ({ email, password }) => {
@@ -41,9 +41,12 @@ export const authProvider: AuthBindings = {
     try {
       await account.deleteSession("current");
     } catch (error: any) {
+      cookies.remove(TOKEN_KEY);
+      appwriteClient.setJWT("");
+
       return {
-        success: false,
-        error,
+        success: true,
+        redirectTo: "/login",
       };
     }
     cookies.remove(TOKEN_KEY);
