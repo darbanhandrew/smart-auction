@@ -9,7 +9,7 @@ if (process.env.NODE_ENV === "development") {
   COOKIE_DOMAIN = "localhost";
 }
 
-const cookies = Cookies.withAttributes({ domain: COOKIE_DOMAIN });
+const cookies = Cookies.withAttributes({ domain: COOKIE_DOMAIN, sameSite: "strict", secure: true });
 
 export const authProvider: AuthBindings = {
   login: async ({ email, password }) => {
