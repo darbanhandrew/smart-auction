@@ -4,6 +4,10 @@ import * as cookie from "cookie";
 import Cookies from "js-cookie";
 
 import { account, appwriteClient, TOKEN_KEY } from "./utility";
+let COOKIE_DOMAIN = "adm.smartauctionhouse.com";
+if (process.env.NODE_ENV === "development") {
+  COOKIE_DOMAIN = "localhost";
+}
 
 export const authProvider: AuthBindings = {
   login: async ({ email, password }) => {
@@ -13,7 +17,10 @@ export const authProvider: AuthBindings = {
       const { jwt } = await account.createJWT();
 
       if (jwt) {
-        Cookies.set(TOKEN_KEY, jwt);
+        Cookies.set(TOKEN_KEY, jwt,
+          {
+            domain: COOKIE_DOMAIN,
+          });
       }
 
       return {
