@@ -51,7 +51,7 @@ export async function loader({ request }: LoaderArgs) {
         type: "listMemberships",
         body: {
           //generate
-          userId: user ? user.$id : null
+          user_id: user.$id
         }
       }));
       /*result is like this: 
