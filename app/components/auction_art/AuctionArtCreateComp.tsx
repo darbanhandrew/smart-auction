@@ -1,5 +1,5 @@
-import React from "react";
-import { IResourceComponentsProps } from "@refinedev/core";
+import React, { useEffect } from "react";
+import { IResourceComponentsProps, useList } from "@refinedev/core";
 import { Create, useForm, useSelect } from "@refinedev/antd";
 import { Form, Input, Select } from "antd";
 import dayjs from "dayjs";
@@ -11,12 +11,22 @@ export const AuctionArtCreateComp: React.FC<IResourceComponentsProps> = () => {
     resource: "auction",
     optionLabel: "name",
   });
+  const [artOptions, setArtOptions] = React.useState<any[]>([]);
+  const { data: artSelectQueryResult } = useList(
 
-  const { selectProps: artSelectProps } = useSelect({
-    resource: "art",
-    optionLabel: "name",
-  });
-
+    {
+      resource: "art",
+    }
+  )
+  useEffect(() => {
+    if (artSelectQueryResult?.data) {
+      const artOptionsRequest = artSelectQueryResult?.data?.map((art: any) => ({
+        label: `${art?.artist?.name ?? "Unknown Artist"} - ${art?.size ?? "Unknown Size"} - ${art?.art_material?.name ?? "Unknown Material"}`,
+        value: art?.id,
+      }));
+      setArtOptions(artOptionsRequest);
+    }
+  }, [artSelectQueryResult?.data]);
   const { selectProps: bidStepCategoryProps } = useSelect({
     resource: "bid_step_category",
     optionLabel: "name",
@@ -156,17 +166,35 @@ export const AuctionArtCreateComp: React.FC<IResourceComponentsProps> = () => {
         >
           <Select {...auctionSelectProps} />
         </Form.Item>
-        <Form.Item
-          label="Art"
-          name={["art"]}
-          rules={[
-            {
-              required: true,
-            },
-          ]}
-        >
-          <Select {...artSelectProps} />
-        </Form.Item>
+        {(artOptions.length > 0 &&
+          <Form.Item
+            label="Art"
+            name={["art"]}
+            rules={[
+              {
+                required: true,
+              },
+            ]}
+          >
+            <Select
+              showSearch
+              // placeholder="نام آرتیست را تایپ کنید"
+              // optionFilterProp="children"
+              filterOption={(input, option) =>
+                typeof option?.label === "string" && option.label.includes((input as string))
+              }
+              options={artOptions}
+            >
+              {artOptions?.map((option: {
+                label: string,
+                value: string
+              }) => (
+                <Select.Option key={option.value} value={option.value}>
+                  {option.label}
+                </Select.Option>
+              ))}
+            </Select>
+          </Form.Item>)}
       </Form>
     </Create>
   );

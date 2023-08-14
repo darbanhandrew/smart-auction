@@ -31,7 +31,6 @@ export default function BaseLayout() {
             isAdmin = true;
           }
         });
-
         if (!isAdmin) {
           window.location.href = "https://desk.smartauctionhouse.com";
         }
