@@ -25,6 +25,13 @@ export const ArtCreateComp: React.FC<IResourceComponentsProps> = () => {
   const { selectProps: artistSelectProps } = useSelect({
     resource: "artist",
     optionLabel: "name",
+    onSearch: (value: string) => [
+      {
+        field: "name",
+        operator: "contains",
+        value,
+      },
+    ],
   });
 
   const { selectProps: artCategorySelectProps } = useSelect({

@@ -36,6 +36,13 @@ export const ArtEditComp: React.FC<IResourceComponentsProps> = () => {
   const { selectProps: artistSelectProps } = useSelect({
     resource: "artist",
     optionLabel: "name",
+    onSearch: (value: string) => [
+      {
+        field: "name",
+        operator: "contains",
+        value,
+      },
+    ],
   });
 
   const { selectProps: artCategorySelectProps } = useSelect({
@@ -136,7 +143,9 @@ export const ArtEditComp: React.FC<IResourceComponentsProps> = () => {
             },
           ]}
         >
-          <Select {...artistSelectProps} mode="multiple" />
+          <Select {...artistSelectProps} mode="multiple"
+
+          />
         </Form.Item>
         <Form.Item
           label="متریال"
