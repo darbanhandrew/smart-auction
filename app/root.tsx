@@ -82,7 +82,6 @@ export default function App() {
                   dataProvider={dataProvider(appwriteClient, {
                     databaseId: "smart_auction",
                   })}
-                  i18nProvider={}
                   liveProvider={liveProvider(appwriteClient, {
                     databaseId: "smart_auction",
                   })}
