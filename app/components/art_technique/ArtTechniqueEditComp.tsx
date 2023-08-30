@@ -8,13 +8,16 @@ export const ArtTechniqueEditComp: React.FC<IResourceComponentsProps> = () => {
 
   const artTechniqueData = queryResult?.data?.data;
   return (
-    <Edit saveButtonProps={saveButtonProps}>
+    <Edit saveButtonProps={{
+      ...saveButtonProps,
+      children: "ذخیره",
+    }}>
       <Form {...formProps} layout="vertical">
         <h1>
           <strong>{artTechniqueData?.id}</strong>
         </h1>
         <Form.Item
-          label="Name"
+          label="نام"
           name={["name"]}
           rules={[
             {

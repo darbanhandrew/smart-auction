@@ -38,37 +38,37 @@ export const ArtShowComp: React.FC<IResourceComponentsProps> = () => {
 
   return (
     <Show isLoading={isLoading}>
-      <Title level={5}>Id</Title>
+      <Title level={5}>شناسه</Title>
       <TextField value={record?.id} />
-      <Title level={5}>Name</Title>
+      <Title level={5}>نام</Title>
       <TextField value={record?.name} />
-      <Title level={5}>Size</Title>
+      <Title level={5}>سایز</Title>
       <TextField value={record?.size} />
-      <Title level={5}>Date Of Artwork</Title>
+      <Title level={5}>تاریخ خلق</Title>
       <DateField value={record?.date_of_artwork} />
       <Title level={5}>$created At</Title>
       <DateField value={record?.$createdAt} />
       <Title level={5}>$updated At</Title>
       <DateField value={record?.$updatedAt} />
-      <Title level={5}>Art Category</Title>
+      <Title level={5}>دسته بندی</Title>
       {artCategoryIsLoading ? (
         <>Loading...</>
       ) : (
         <>{artCategoryData?.data?.name}</>
       )}
-      <Title level={5}>Art Material</Title>
+      <Title level={5}>متریال</Title>
       {artMaterialIsLoading ? (
         <>Loading...</>
       ) : (
         <>{artMaterialData?.data?.name}</>
       )}
-      <Title level={5}>Art Technique</Title>
+      <Title level={5}>تکنیک</Title>
       {artTechniqueIsLoading ? (
         <>Loading...</>
       ) : (
         <>{artTechniqueData?.data?.name}</>
       )}
-      <Title level={5}>Artist</Title>
+      <Title level={5}>هنرمند</Title>
       {artistIsLoading ? <>Loading...</> : <>{artistData?.data?.name}</>}
       <Title level={5}>Auction Arts</Title>
       {auctionArtIsLoading ? (

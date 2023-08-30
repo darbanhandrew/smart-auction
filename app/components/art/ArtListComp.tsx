@@ -7,8 +7,9 @@ import {
   ShowButton,
   DateField,
 } from "@refinedev/antd";
+import dayjs from "dayjs";
 import { Table, Space } from "antd";
-
+import { storage } from "~/utility";
 export const ArtListComp: React.FC<IResourceComponentsProps> = () => {
   const { tableProps } = useTable({
     syncWithLocation: true,
@@ -17,37 +18,49 @@ export const ArtListComp: React.FC<IResourceComponentsProps> = () => {
   return (
     <List>
       <Table {...tableProps} rowKey="id">
-        <Table.Column dataIndex="id" title="Id" />
-        <Table.Column dataIndex="name" title="Name" />
-
-        <Table.Column dataIndex="size" title="Size" />
-        <Table.Column
-          dataIndex={["date_of_artwork"]}
-          title="Date Of Artwork"
-          render={(value: any) => <DateField value={value} />}
-        />
+        <Table.Column dataIndex="id" title="شناسه" />
+        <Table.Column dataIndex={["artist", "name"]} title="هنرمند" />
+        <Table.Column dataIndex="name" title="نام" />
 
         <Table.Column
           dataIndex={["art_category", "name"]}
-          title="Art Category"
+          title="دسته بندی"
         />
         <Table.Column
           dataIndex={["art_material", "name"]}
-          title="Art Material"
+          title="متریال"
         />
         <Table.Column
           dataIndex={["art_technique", "name"]}
-          title="Art Technique"
+          title="تکنیک"
         />
-        <Table.Column dataIndex={["artist", "name"]} title="Artist" />
-
+        <Table.Column dataIndex="size" title="سایز" />
         <Table.Column
-          title="Actions"
+          dataIndex={["date_of_artwork"]}
+          title="تاریخ خلق"
+          render={(value: any) => <span><>{dayjs(value).format("YYYY/MM/DD")}</></span>}
+        />
+        <Table.Column
+          dataIndex={["image"]}
+          title="تصویر"
+          render={(value: any) =>
+            value ? (
+              <img
+                src={storage.getFilePreview("images", value, 64).toString()}
+                width={64}
+              />
+            ) : (
+              "No image"
+            )
+          }
+        />
+        <Table.Column
+          title="عملیات"
           dataIndex="actions"
           render={(_, record: BaseRecord) => (
             <Space>
               <EditButton hideText size="small" recordItemId={record.id} />
-              <ShowButton hideText size="small" recordItemId={record.id} />
+              {/* <ShowButton hideText size="small" recordItemId={record.id} /> */}
             </Space>
           )}
         />

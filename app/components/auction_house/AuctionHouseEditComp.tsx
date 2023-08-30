@@ -7,7 +7,7 @@ import { storage } from "~/utility";
 import { UploadOutlined } from "@ant-design/icons";
 import { ID } from "@refinedev/appwrite";
 import { UploadFile } from "antd/lib/upload/interface";
-import { DatePicker  } from "antd-jalali";
+import { DatePicker } from "antd-jalali";
 export const AuctionHouseEditComp: React.FC<IResourceComponentsProps> = () => {
   const { formProps, saveButtonProps, queryResult, onFinish } = useForm();
   const [fileList, setFileList] = React.useState<UploadFile[]>([]);
@@ -63,7 +63,10 @@ export const AuctionHouseEditComp: React.FC<IResourceComponentsProps> = () => {
     });
   };
   return (
-    <Edit saveButtonProps={saveButtonProps}>
+    <Edit saveButtonProps={{
+      ...saveButtonProps,
+      children: "ذخیره",
+    }}>
       <Form
         {...formProps}
         initialValues={{
@@ -79,7 +82,7 @@ export const AuctionHouseEditComp: React.FC<IResourceComponentsProps> = () => {
           <strong>{auctionHouseData?.id}</strong>
         </h1>
         <Form.Item
-          label="Name"
+          label="نام"
           name={["name"]}
           rules={[
             {
@@ -99,7 +102,7 @@ export const AuctionHouseEditComp: React.FC<IResourceComponentsProps> = () => {
             storage.deleteFile("images", fileList[0].uid);
             setFileList([]);
           }}
-          //show progress bar while action is in progress using onChnage
+        //show progress bar while action is in progress using onChnage
         >
           <Button icon={<UploadOutlined />}>Upload</Button>
         </Upload.Dragger>
@@ -117,7 +120,7 @@ export const AuctionHouseEditComp: React.FC<IResourceComponentsProps> = () => {
         <Form.Item label="On going Auctions" name={["on_going_auctions"]}>
           <InputNumber />
         </Form.Item>
-        <Form.Item label="Status" name={["status"]}>
+        <Form.Item label="وضعیت" name={["status"]}>
           <Select>
             <Select.Option value="live">Live</Select.Option>
             <Select.Option value="not_live">Closed</Select.Option>
@@ -130,9 +133,9 @@ export const AuctionHouseEditComp: React.FC<IResourceComponentsProps> = () => {
             value: value ? dayjs(value) : undefined,
           })}
         >
-                    <DatePicker
-          showTime={{ format:'HH:mm:ss'}}
-           />
+          <DatePicker
+            showTime={{ format: 'HH:mm:ss' }}
+          />
         </Form.Item>
       </Form>
     </Edit>

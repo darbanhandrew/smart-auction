@@ -11,7 +11,10 @@ export const BidStepCreateComp: React.FC<IResourceComponentsProps> = () => {
     optionLabel: "name",
   });
   return (
-    <Create saveButtonProps={saveButtonProps}>
+    <Create saveButtonProps={{
+      ...saveButtonProps,
+      children: "ذخیره",
+    }}>
       <Form {...formProps} layout="vertical">
         <Form.Item
           label="Start Price"
@@ -36,7 +39,7 @@ export const BidStepCreateComp: React.FC<IResourceComponentsProps> = () => {
           <Input />
         </Form.Item>
         <Form.Item
-          label="Step Size"
+          label="Step سایز"
           name={["step_size"]}
           rules={[
             {

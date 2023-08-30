@@ -14,11 +14,11 @@ export const AuctionHouseShowComp: React.FC<IResourceComponentsProps> = () => {
 
   return (
     <Show isLoading={isLoading}>
-      <Title level={5}>Id</Title>
+      <Title level={5}>شناسه</Title>
       <TextField value={record?.id} />
       {record?.image ? (
         <div>
-          <Title level={5}>Image</Title>
+          <Title level={5}>آواتار</Title>
           <Image
             src={storage
               .getFilePreview("images", record.image, undefined)
@@ -26,7 +26,7 @@ export const AuctionHouseShowComp: React.FC<IResourceComponentsProps> = () => {
           />
         </div>
       ) : null}
-      <Title level={5}>Name</Title>
+      <Title level={5}>نام</Title>
       <TextField value={record?.name} />
       <Title level={5}>$created At</Title>
       <DateField value={record?.$createdAt} />

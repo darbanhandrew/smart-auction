@@ -13,10 +13,13 @@ export function UserAuctionRequestCreateComp(data: any) {
         optionLabel: "name",
     });
     return (
-        <Create saveButtonProps={saveButtonProps}>
+        <Create saveButtonProps={{
+            ...saveButtonProps,
+            children: "ذخیره",
+        }}>
             <Form {...formProps} layout="vertical">
                 <Form.Item
-                    label="Status"
+                    label="وضعیت"
                     name={["status"]}
                     rules={[
                         {

@@ -8,15 +8,18 @@ export const ArtMaterialEditComp: React.FC<IResourceComponentsProps> = () => {
   const { formProps, saveButtonProps, queryResult } = useForm();
 
   const artMaterialData = queryResult?.data?.data;
- 
+
   return (
-    <Edit saveButtonProps={saveButtonProps}>
+    <Edit saveButtonProps={{
+      ...saveButtonProps,
+      children: "ذخیره",
+    }}>
       <Form {...formProps} layout="vertical">
         <h1>
           <strong>{artMaterialData?.id}</strong>
         </h1>
         <Form.Item
-          label="Name"
+          label="نام"
           name={["name"]}
           rules={[
             {

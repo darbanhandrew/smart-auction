@@ -19,13 +19,16 @@ export const BidStepCategoryEditComp: React.FC<
   });
 
   return (
-    <Edit saveButtonProps={saveButtonProps}>
+    <Edit saveButtonProps={{
+      ...saveButtonProps,
+      children: "ذخیره",
+    }}>
       <Form {...formProps} layout="vertical">
         <h1>
           <strong>{bidStepCategoryData?.id}</strong>
         </h1>
         <Form.Item
-          label="Name"
+          label="نام"
           name={["name"]}
           rules={[
             {

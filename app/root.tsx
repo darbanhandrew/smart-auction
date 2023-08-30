@@ -14,7 +14,6 @@ import { RefineKbar, RefineKbarProvider } from "@refinedev/kbar";
 import routerProvider, {
   UnsavedChangesNotifier,
 } from "@refinedev/remix-router";
-
 import { ColorModeContextProvider } from "@contexts";
 import resetStyle from "@refinedev/antd/dist/reset.css";
 import { dataProvider, liveProvider } from "@refinedev/appwrite";
@@ -28,7 +27,7 @@ import jalaliday from "jalaliday";
 import styles from "./styles.css";
 export const meta: MetaFunction = () => ({
   charset: "utf-8",
-  title: "میزکار حراجی هوشمند",
+  title: "اسمارت آکشن",
   viewport: "width=device-width,initial-scale=1",
 });
 
@@ -61,7 +60,7 @@ export default function App() {
   dayjs().calendar("jalali");
   // setCookieDomain();
   return (
-    <html lang="en">
+    <html lang="fa-IR">
       <head>
         <Meta />
         <Links />
@@ -83,6 +82,7 @@ export default function App() {
                   dataProvider={dataProvider(appwriteClient, {
                     databaseId: "smart_auction",
                   })}
+                  i18nProvider={}
                   liveProvider={liveProvider(appwriteClient, {
                     databaseId: "smart_auction",
                   })}
@@ -324,4 +324,3 @@ export function links() {
   { rel: "stylesheet", href: styles },
   ];
 }
- 

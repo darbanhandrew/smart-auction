@@ -1,7 +1,7 @@
 import React from "react";
 import { IResourceComponentsProps } from "@refinedev/core";
 import { Create, useForm } from "@refinedev/antd";
-import { Form, Input} from "antd";
+import { Form, Input } from "antd";
 
 export const ArtMaterialCreateComp: React.FC<IResourceComponentsProps> = () => {
   const { formProps, saveButtonProps } = useForm();
@@ -9,10 +9,13 @@ export const ArtMaterialCreateComp: React.FC<IResourceComponentsProps> = () => {
 
 
   return (
-    <Create saveButtonProps={saveButtonProps}>
+    <Create saveButtonProps={{
+      ...saveButtonProps,
+      children: "ذخیره",
+    }}>
       <Form {...formProps} layout="vertical">
         <Form.Item
-          label="Name"
+          label="نام"
           name={["name"]}
           rules={[
             {

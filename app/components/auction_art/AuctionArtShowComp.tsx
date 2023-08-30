@@ -41,13 +41,13 @@ export const AuctionArtShowComp: React.FC<IResourceComponentsProps> = () => {
 
   return (
     <Show isLoading={isLoading}>
-      <Title level={5}>Id</Title>
+      <Title level={5}>شناسه</Title>
       <TextField value={record?.id} />
       <Title level={5}>Lot</Title>
       <NumberField value={record?.lot ?? ""} />
-      <Title level={5}>Auction Start Date</Title>
+      <Title level={5}>Auction تاریخ شروع</Title>
       <DateField value={record?.auction_start_date} />
-      <Title level={5}>Auction End Date</Title>
+      <Title level={5}>Auction تاریخ پایان</Title>
       <DateField value={record?.auction_end_date} />
       <Title level={5}>Min Price</Title>
       <NumberField value={record?.min_price ?? ""} />

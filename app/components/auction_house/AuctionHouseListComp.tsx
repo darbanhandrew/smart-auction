@@ -17,29 +17,10 @@ export const AuctionHouseListComp: React.FC<IResourceComponentsProps> = () => {
   return (
     <List>
       <Table {...tableProps} rowKey="id">
-        <Table.Column dataIndex="id" title="Id" />
-        <Table.Column dataIndex="name" title="Name" />
-
-        {/*add a table column which can show the image using Antd image component. the component should load the image from the storage using image field value.*/}
-
+        <Table.Column dataIndex="id" title="شناسه" />
+        <Table.Column dataIndex="name" title="نام" />
         <Table.Column
-          dataIndex={["image"]}
-          title="Image"
-          render={(value: any) =>
-            value ? (
-              <Image
-                src={storage.getFilePreview("images", value, 200).toString()}
-                width={200}
-                height={200}
-              />
-            ) : (
-              "No image"
-            )
-          }
-        />
-
-        <Table.Column
-          title="Actions"
+          title="عملیات"
           dataIndex="actions"
           render={(_, record: BaseRecord) => (
             <Space>

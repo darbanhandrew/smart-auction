@@ -51,7 +51,10 @@ export function UserProfileEditComp(data: any) {
         }
     }, [userProfileData]);
     return (
-        <Edit saveButtonProps={saveButtonProps}>
+        <Edit saveButtonProps={{
+            ...saveButtonProps,
+            children: "ذخیره",
+        }}>
             <Form {...formProps} layout="vertical" onFinish={handleOnFinish}>
                 <h1>
                     <Link to={`/user/edit/${userProfileData?.user_id}/`}>
@@ -139,7 +142,7 @@ export function UserProfileEditComp(data: any) {
                     bucketId="national_card"
                 />
                 <Form.Item
-                    label="Status"
+                    label="وضعیت"
                     name={["status"]}
                 >
                     <Select>

@@ -14,7 +14,10 @@ export function UserAuctionRequestEditComp(data: any) {
         optionLabel: "name",
     });
     return (
-        <Edit saveButtonProps={saveButtonProps}>
+        <Edit saveButtonProps={{
+            ...saveButtonProps,
+            children: "ذخیره",
+        }}>
             <Form {...formProps} layout="vertical" initialValues={{
                 ...formProps?.initialValues,
                 auction: userAuctionRequestData?.auction?.$id,
@@ -23,7 +26,7 @@ export function UserAuctionRequestEditComp(data: any) {
                     {userAuctionRequestData?.id}
                 </h1>
                 <Form.Item
-                    label="Status"
+                    label="وضعیت"
                     name={["status"]}
                     rules={[
                         {

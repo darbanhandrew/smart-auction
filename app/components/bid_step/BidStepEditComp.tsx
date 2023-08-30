@@ -19,12 +19,15 @@ export const BidStepEditComp: React.FC<IResourceComponentsProps> = () => {
     });
   };
   return (
-    <Edit saveButtonProps={saveButtonProps}>
+    <Edit saveButtonProps={{
+      ...saveButtonProps,
+      children: "ذخیره",
+    }}>
       <Form
         {...formProps}
         layout="vertical"
         onFinish={handleOnFinish}
-        //remove bid_step_category from form initial values
+      //remove bid_step_category from form initial values
       >
         <h1>
           <strong>{bidStepData?.id}</strong>
@@ -52,7 +55,7 @@ export const BidStepEditComp: React.FC<IResourceComponentsProps> = () => {
           <Input />
         </Form.Item>
         <Form.Item
-          label="Step Size"
+          label="Step سایز"
           name={["step_size"]}
           rules={[
             {

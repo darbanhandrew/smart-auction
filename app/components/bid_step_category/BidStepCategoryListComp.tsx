@@ -19,11 +19,11 @@ export const BidStepCategoryListComp: React.FC<
   return (
     <List>
       <Table {...tableProps} rowKey="id">
-        <Table.Column dataIndex="id" title="Id" />
-        <Table.Column dataIndex="name" title="Name" />
+        <Table.Column dataIndex="id" title="شناسه" />
+        <Table.Column dataIndex="name" title="نام" />
 
         <Table.Column
-          title="Actions"
+          title="عملیات"
           dataIndex="actions"
           render={(_, record: BaseRecord) => (
             <Space>

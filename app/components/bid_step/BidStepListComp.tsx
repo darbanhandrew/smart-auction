@@ -17,19 +17,25 @@ export const BidStepListComp: React.FC<IResourceComponentsProps> = () => {
   return (
     <List>
       <Table {...tableProps} rowKey="id">
-        <Table.Column dataIndex="id" title="Id" />
-        <Table.Column dataIndex="start_price" title="Start Price" />
-        <Table.Column dataIndex="end_price" title="End Price" />
-        <Table.Column dataIndex="step_size" title="Step Size" />
+        <Table.Column dataIndex="id" title="شناسه" />
+        <Table.Column dataIndex="start_price" title="قیمت پایه"
+          render={(value: any) => <span><>{value.toLocaleString('fa-IR')} تومان</></span>}
+        />
+        <Table.Column dataIndex="end_price" title="قیمت نهایی"
+          render={(value: any) => <span><>{value.toLocaleString('fa-IR')} تومان</></span>}
+        />
+        <Table.Column dataIndex="step_size" title="اندازه گام"
+          render={(value: any) => <span><>{value.toLocaleString('fa-IR')} تومان</></span>}
+        />
 
         <Table.Column
           dataIndex="bid_step_category"
-          title="Bid Step Category"
+          title="گروه بید استپ"
           render={(value: any) => (value ? value.name : "")}
         />
 
         <Table.Column
-          title="Actions"
+          title="عملیات"
           dataIndex="actions"
           render={(_, record: BaseRecord) => (
             <Space>

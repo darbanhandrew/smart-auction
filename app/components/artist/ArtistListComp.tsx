@@ -17,12 +17,12 @@ export const ArtistListComp: React.FC<IResourceComponentsProps> = () => {
   return (
     <List>
       <Table {...tableProps} rowKey="id">
-        <Table.Column dataIndex="id" title="Id" />
-        <Table.Column dataIndex="name" title="Name" />
+        <Table.Column dataIndex="id" title="شناسه" />
+        <Table.Column dataIndex="name" title="نام و نام خانوادگی" />
 
         <Table.Column
           dataIndex="art"
-          title="Art"
+          title="تعداد آثار"
           render={(value: any[]) =>
             //show count
             value?.length
@@ -30,7 +30,7 @@ export const ArtistListComp: React.FC<IResourceComponentsProps> = () => {
         />
 
         <Table.Column
-          title="Actions"
+          title="عملیات"
           dataIndex="actions"
           render={(_, record: BaseRecord) => (
             <Space>

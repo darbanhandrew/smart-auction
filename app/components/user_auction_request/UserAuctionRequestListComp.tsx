@@ -17,10 +17,10 @@ export const UserAuctionRequestListComp: React.FC<IResourceComponentsProps> = ()
     return (
         <List>
             <Table {...tableProps} rowKey="id">
-                <Table.Column dataIndex="id" title="Id" />
-                <Table.Column dataIndex="status" title="Status" />
+                <Table.Column dataIndex="id" title="شناسه" />
+                <Table.Column dataIndex="status" title="وضعیت" />
                 <Table.Column dataIndex="note" title="Note" />
-                <Table.Column dataIndex={["user_id"]} title="User" />
+                <Table.Column dataIndex={["user_id"]} title="کاربر" />
                 <Table.Column
                     dataIndex={["$createdAt"]}
                     title="$created At"
@@ -39,7 +39,7 @@ export const UserAuctionRequestListComp: React.FC<IResourceComponentsProps> = ()
                 <Table.Column dataIndex={["auction", "name"]} title="Auction" />
 
                 <Table.Column
-                    title="Actions"
+                    title="عملیات"
                     dataIndex="actions"
                     render={(_, record: BaseRecord) => (
                         <Space>

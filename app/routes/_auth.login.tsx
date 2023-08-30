@@ -8,7 +8,7 @@ export default function Login() {
       title={
         <ThemedTitleV2
           collapsed={false}
-          text="میز کار حراجی هوشمند"
+          text="اسمارت آکشن"
           icon={<AppIcon />}
         />
       }

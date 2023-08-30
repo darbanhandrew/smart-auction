@@ -23,9 +23,9 @@ export const BidStepCategoryShowComp: React.FC<
 
   return (
     <Show isLoading={isLoading}>
-      <Title level={5}>Id</Title>
+      <Title level={5}>شناسه</Title>
       <TextField value={record?.id} />
-      <Title level={5}>Name</Title>
+      <Title level={5}>نام</Title>
       <TextField value={record?.name} />
       <Title level={5}>$created At</Title>
       <DateField value={record?.$createdAt} />

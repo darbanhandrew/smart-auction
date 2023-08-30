@@ -9,7 +9,8 @@ import {
   TagField,
 } from "@refinedev/antd";
 import { Table, Space } from "antd";
-
+import { storage } from "~/utility";
+import dayjs from "dayjs";
 export const AuctionArtListComp: React.FC<IResourceComponentsProps> = () => {
   const { tableProps } = useTable({
     syncWithLocation: true,
@@ -26,47 +27,37 @@ export const AuctionArtListComp: React.FC<IResourceComponentsProps> = () => {
   return (
     <List>
       <Table {...tableProps} rowKey="id">
-        <Table.Column dataIndex="id" title="Id" />
+        <Table.Column dataIndex="id" title="شناسه" />
+        <Table.Column dataIndex={["art", "name"]} title="اثر" />
+        <Table.Column dataIndex={["art", "artist", "name"]} title="نام هنرمند" />
+        <Table.Column dataIndex={["auction", "name"]} title="نام حراج" />
         <Table.Column dataIndex="lot" title="Lot" />
         <Table.Column
           dataIndex={["auction_start_date"]}
-          title="Auction Start Date"
-          render={(value: any) => <DateField value={value} />}
+          title="تاریخ شروع"
+          render={(value: any) => <span><>{dayjs(value).format("YYYY/MM/DD")}</></span>}
         />
         <Table.Column
           dataIndex={["auction_end_date"]}
-          title="Auction End Date"
-          render={(value: any) => <DateField value={value} />}
-        />
-        <Table.Column dataIndex="min_price" title="Min Price" />
-        <Table.Column dataIndex="max_price" title="Max Price" />
-        <Table.Column dataIndex="current_price" title="Current Price" />
-        <Table.Column dataIndex="order" title="Order" />
-
-        <Table.Column dataIndex={["auction", "name"]} title="Auction" />
-        <Table.Column dataIndex={["art", "name"]} title="Art" />
-        <Table.Column
-          dataIndex={["bid_step_category", "name"]}
-          title="Bid Step Category"
+          title="تاریخ پایان"
+          render={(value: any) => <span><>{dayjs(value).format("YYYY/MM/DD")}</></span>}
         />
         <Table.Column
-          dataIndex="bid"
-          title="Bid"
-          render={(value: any[]) =>
-            bidIsLoading ? (
-              <>Loading...</>
+          dataIndex={["art", "image"]}
+          title="تصویر"
+          render={(value: any) =>
+            value ? (
+              <img
+                src={storage.getFilePreview("images", value, 64).toString()}
+                width={64}
+              />
             ) : (
-              <>
-                {value?.map((item, index) => (
-                  <TagField key={index} value={item} />
-                ))}
-              </>
+              "No image"
             )
           }
         />
-
         <Table.Column
-          title="Actions"
+          title="عملیات"
           dataIndex="actions"
           render={(_, record: BaseRecord) => (
             <Space>

@@ -58,7 +58,10 @@ export const ArtEditComp: React.FC<IResourceComponentsProps> = () => {
   });
 
   return (
-    <Edit saveButtonProps={saveButtonProps}>
+    <Edit saveButtonProps={{
+      ...saveButtonProps,
+      children: "ذخیره",
+    }}>
       <Form
         {...formProps}
         layout="vertical"
@@ -75,7 +78,7 @@ export const ArtEditComp: React.FC<IResourceComponentsProps> = () => {
         }}
       >
         <Form.Item
-          label="Name"
+          label="نام"
           name={["name"]}
           rules={[
             {
@@ -86,7 +89,7 @@ export const ArtEditComp: React.FC<IResourceComponentsProps> = () => {
           <Input />
         </Form.Item>
         <Form.Item
-          label="Size"
+          label="سایز"
           name={["size"]}
           rules={[
             {
@@ -97,13 +100,13 @@ export const ArtEditComp: React.FC<IResourceComponentsProps> = () => {
           <Input />
         </Form.Item>
         <Form.Item
-          label="Signature"
+          label="توضیحات"
           name={["signature"]}
         >
           <Input.TextArea autoSize={{ minRows: 3 }} />
         </Form.Item>
         <Form.Item
-          label="Date Of Artwork"
+          label="تاریخ خلق"
           name={["date_of_artwork"]}
           rules={[
             {
@@ -125,7 +128,7 @@ export const ArtEditComp: React.FC<IResourceComponentsProps> = () => {
           maxCount={1}
         />
         <Form.Item
-          label="Artist"
+          label="هنرمند"
           name={"artist"}
           rules={[
             {
@@ -136,7 +139,7 @@ export const ArtEditComp: React.FC<IResourceComponentsProps> = () => {
           <Select {...artistSelectProps} />
         </Form.Item>
         <Form.Item
-          label="Art Material"
+          label="متریال"
           name={"art_material"}
           rules={[
             {
@@ -147,7 +150,7 @@ export const ArtEditComp: React.FC<IResourceComponentsProps> = () => {
           <Select {...artMaterialSelectProps} />
         </Form.Item>
         <Form.Item
-          label="Art Technique"
+          label="تکنیک"
           name={"art_technique"}
           rules={[
             {
@@ -158,7 +161,7 @@ export const ArtEditComp: React.FC<IResourceComponentsProps> = () => {
           <Select {...artTechniqueSelectProps} />
         </Form.Item>
         <Form.Item
-          label="Art Category"
+          label="دسته بندی"
           name={"art_category"}
           rules={[
             {

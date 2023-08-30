@@ -1,4 +1,4 @@
-import { AntdInferencer } from "@refinedev/inferencer/antd";
-        export default function BidEdit() {
-            return <AntdInferencer />;
-        }
+import { BidEditComp } from "~/components/bid/BidEditComp";
+export default function BidEdit() {
+    return <BidEditComp />
+}

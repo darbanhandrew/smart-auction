@@ -7,7 +7,7 @@ import { storage } from "~/utility";
 import { UploadOutlined } from "@ant-design/icons";
 import type { UploadFile } from "antd/es/upload/interface";
 import { ID } from "@refinedev/appwrite";
-import { DatePicker  } from "antd-jalali";
+import { DatePicker } from "antd-jalali";
 
 export const AuctionHouseCreateComp: React.FC<
   IResourceComponentsProps
@@ -52,10 +52,13 @@ export const AuctionHouseCreateComp: React.FC<
   });
 
   return (
-    <Create saveButtonProps={saveButtonProps}>
+    <Create saveButtonProps={{
+      ...saveButtonProps,
+      children: "ذخیره",
+    }}>
       <Form {...formProps} layout="vertical" onFinish={handleOnFinish}>
         <Form.Item
-          label="Name"
+          label="نام"
           name={["name"]}
           rules={[
             {
@@ -75,7 +78,7 @@ export const AuctionHouseCreateComp: React.FC<
             storage.deleteFile("images", fileList[0].uid);
             setFileList([]);
           }}
-          //show progress bar while action is in progress using onChnage
+        //show progress bar while action is in progress using onChnage
         >
           <Button icon={<UploadOutlined />}>Upload</Button>
         </Upload.Dragger>
@@ -85,7 +88,7 @@ export const AuctionHouseCreateComp: React.FC<
         <Form.Item label="On going Auctions" name={["on_going_auctions"]}>
           <InputNumber />
         </Form.Item>
-        <Form.Item label="Status" name={["status"]}>
+        <Form.Item label="وضعیت" name={["status"]}>
           <Select>
             <Select.Option value="live">Live</Select.Option>
             <Select.Option value="not_live">Closed</Select.Option>
@@ -98,9 +101,9 @@ export const AuctionHouseCreateComp: React.FC<
             value: value ? dayjs(value) : undefined,
           })}
         >
-                    <DatePicker
-          showTime={{ format:'HH:mm:ss'}}
-           />
+          <DatePicker
+            showTime={{ format: 'HH:mm:ss' }}
+          />
         </Form.Item>
       </Form>
     </Create>

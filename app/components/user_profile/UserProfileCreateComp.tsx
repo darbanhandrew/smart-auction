@@ -8,7 +8,10 @@ export const UserProfileCreateComp: React.FC<IResourceComponentsProps> = () => {
     const { formProps, saveButtonProps, queryResult } = useForm();
 
     return (
-        <Create saveButtonProps={saveButtonProps}>
+        <Create saveButtonProps={{
+            ...saveButtonProps,
+            children: "ذخیره",
+        }}>
             <Form {...formProps} layout="vertical">
                 <Form.Item
                     label="Phone Number"

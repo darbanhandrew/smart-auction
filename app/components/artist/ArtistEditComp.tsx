@@ -46,13 +46,20 @@ export const ArtistEditComp: React.FC<IResourceComponentsProps> = () => {
   }, [artistData]);
 
   return (
-    <Edit saveButtonProps={saveButtonProps}>
+    <Edit
+      title="ویرایش هنرمند"
+      //change save button text 
+      saveButtonProps={{
+        ...saveButtonProps,
+        children: "ذخیره",
+      }}
+    >
       <Form {...formProps} layout="vertical" onFinish={handleOnFinish}>
         <h1>
           <strong>{artistData?.id}</strong>
         </h1>
         <Form.Item
-          label="Name"
+          label="نام و نام خانوادگی"
           name={["name"]}
           rules={[
             {
@@ -63,7 +70,7 @@ export const ArtistEditComp: React.FC<IResourceComponentsProps> = () => {
           <Input />
         </Form.Item>
         <Form.Item
-          label="Date of Birth"
+          label="تاریخ تولد"
           name={["date_of_birth"]}
           getValueProps={(value) => ({
             value: value ? dayjs(value) : undefined,
@@ -72,7 +79,7 @@ export const ArtistEditComp: React.FC<IResourceComponentsProps> = () => {
           <DatePicker />
         </Form.Item>
         <Form.Item
-          label="Date of Death"
+          label="تاریخ فوت"
           name={["date_of_death"]}
           getValueProps={(value) => ({
             value: value ? dayjs(value) : undefined,
@@ -81,13 +88,13 @@ export const ArtistEditComp: React.FC<IResourceComponentsProps> = () => {
           <DatePicker />
         </Form.Item>
         <Form.Item
-          label="Biography"
-          name={["biography"]}
+          label="بیوگرافی"
+          name={["بیوگرافی"]}
         >
           <Input.TextArea autoSize={{ minRows: 5 }} />
         </Form.Item>
         <h1>
-          <b>Image</b>
+          <b>آواتار</b>
         </h1>
         <UploadImage
           state={imageList}
@@ -95,14 +102,14 @@ export const ArtistEditComp: React.FC<IResourceComponentsProps> = () => {
           name="image"
           maxCount={1}
         />
-        <h1>Banner</h1>
+        <h1>آواتار</h1>
         <UploadImage
           state={bannerList}
           setState={(state) => setBannerList(state)}
           name="banner"
           maxCount={1}
         />
-        <Form.Item label="Status" name={["status"]}>
+        <Form.Item label="وضعیت" name={["status"]}>
           <Select
             defaultValue={
               artistData?.status === "draft"
@@ -116,16 +123,16 @@ export const ArtistEditComp: React.FC<IResourceComponentsProps> = () => {
                       : "draft"
             }
           >
-            <Select.Option value="draft">Draft</Select.Option>
-            <Select.Option value="pending">Inactive</Select.Option>
-            <Select.Option value="verified">Verified</Select.Option>
-            <Select.Option value="unverified">Unverified</Select.Option>
+            <Select.Option value="draft">پیش نویس</Select.Option>
+            <Select.Option value="pending">غیر فعال</Select.Option>
+            <Select.Option value="verified">تایید شده</Select.Option>
+            <Select.Option value="unverified">تایید نشده</Select.Option>
           </Select>
         </Form.Item>
         {/* <Form.Item label="# of Artworks" name={["number_of_artworks"]}>
           <InputNumber />
         </Form.Item> */}
       </Form>
-    </Edit>
+    </Edit >
   );
 };

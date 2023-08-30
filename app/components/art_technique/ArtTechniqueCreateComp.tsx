@@ -8,10 +8,13 @@ export const ArtTechniqueCreateComp: React.FC<
 > = () => {
   const { formProps, saveButtonProps, queryResult } = useForm();
   return (
-    <Create saveButtonProps={saveButtonProps}>
+    <Create saveButtonProps={{
+      ...saveButtonProps,
+      children: "ذخیره",
+    }}>
       <Form {...formProps} layout="vertical">
         <Form.Item
-          label="Name"
+          label="نام"
           name={["name"]}
           rules={[
             {

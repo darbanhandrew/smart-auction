@@ -50,7 +50,10 @@ type User = {
     const userProfileData = queryResult?.?.data;
 
     return (
-        <Edit saveButtonProps={saveButtonProps}>
+        <Edit       saveButtonProps={{
+        ...saveButtonProps,
+        children: "ذخیره",
+      }}>
             <Form {...formProps} layout="vertical">
                 <h1>
                     {userProfileData?.id} - {userProfileData?.phone_number}
@@ -115,7 +118,7 @@ type User = {
 // ...
 const columns = [
   {
-    title: "Id",
+    title: "شناسه",
     dataIndex: "$id",
     key: "$id",
   },
@@ -125,7 +128,7 @@ const columns = [
     key: "phoneVerification",
   },
   {
-    title: "Name",
+    title: "نام",
     dataIndex: "name",
     key: "name",
   },
@@ -140,7 +143,7 @@ const columns = [
     key: "phone",
   },
   {
-    title: "Status",
+    title: "وضعیت",
     dataIndex: "status",
     key: "status",
   },

@@ -18,7 +18,7 @@ export default function UserCreateComp() {
         <Form
             onFinish={handleOnFinish}
         >
-            <Form.Item label="Name" name="name">
+            <Form.Item label="نام" name="name">
                 <Input />
             </Form.Item>
             <Form.Item label="Email" name="email">

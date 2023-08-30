@@ -10,10 +10,16 @@ i18n
   .init({
     supportedLngs: ["en", "fa"],
     backend: {
-      loadPath: "/locales/{{lng}}/{{ns}}.json", // locale files path
+      loadPath: "/locales/{{lnimport { I18nProvider } from "@refinedev / core";
+
+      const i18nProvider: I18nProvider = {
+  translate: (key: string, options?: any, defaultMessage?: string) => string,
+  changeLocale: (lang: string, options?: any) => Promise,
+  getLocale: () => string,
+}; g}}/{{ns}}.json", / / locale files path
     },
-    defaultNS: "common",
-    fallbackLng: ["en", "fa"],
+defaultNS: "common",
+  fallbackLng: ["en", "fa"],
   });
 
 export default i18n;

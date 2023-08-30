@@ -17,10 +17,18 @@ export const ArtistCreateComp: React.FC<IResourceComponentsProps> = () => {
     });
   };
   return (
-    <Create saveButtonProps={saveButtonProps}>
+    <Create
+      //change the title of the page and the button text 
+      title="ایجاد هنرمند جدید"
+      //change save button props so the footer button will show ایجاد هنرمند جدید
+      saveButtonProps={{
+        ...saveButtonProps,
+        children: "ذخیره",
+      }}
+    >
       <Form {...formProps} layout="vertical" onFinish={handleOnFinish}>
         <Form.Item
-          label="Name"
+          label="نام و نا م خانوادگی"
           name={["name"]}
           rules={[
             {
@@ -31,7 +39,7 @@ export const ArtistCreateComp: React.FC<IResourceComponentsProps> = () => {
           <Input />
         </Form.Item>
         <Form.Item
-          label="Date of Birth"
+          label="تاریخ تولد"
           name={["date_of_birth"]}
           getValueProps={(value) => ({
             value: value ? dayjs(value) : undefined,
@@ -40,7 +48,7 @@ export const ArtistCreateComp: React.FC<IResourceComponentsProps> = () => {
           <DatePicker />
         </Form.Item>
         <Form.Item
-          label="Date of Death"
+          label="تاریخ فوت"
           name={["date_of_death"]}
           getValueProps={(value) => ({
             value: value ? dayjs(value) : undefined,
@@ -49,13 +57,13 @@ export const ArtistCreateComp: React.FC<IResourceComponentsProps> = () => {
           <DatePicker />
         </Form.Item>
         <Form.Item
-          label="Biography"
-          name={["biography"]}
+          label="بیوگرافی"
+          name={["بیوگرافی"]}
         >
           <Input.TextArea autoSize={{ minRows: 5 }} />
         </Form.Item>
         <h1>
-          <b>Image</b>
+          <b>آواتار</b>
         </h1>
         <UploadImage
           state={imageList}
@@ -63,25 +71,25 @@ export const ArtistCreateComp: React.FC<IResourceComponentsProps> = () => {
           name="image"
           maxCount={1}
         />
-        <h1>Banner</h1>
+        <h1>کاور</h1>
         <UploadImage
           state={bannerList}
           setState={(state) => setBannerList(state)}
           name="banner"
           maxCount={1}
         />
-        <Form.Item label="Status" name={["status"]}>
+        <Form.Item label="وضعیت" name={["status"]}>
           <Select>
-            <Select.Option value="draft">Draft</Select.Option>
-            <Select.Option value="pending">Inactive</Select.Option>
-            <Select.Option value="verified">Verified</Select.Option>
-            <Select.Option value="unverified">Unverified</Select.Option>
+            <Select.Option value="draft">پیش نویس</Select.Option>
+            <Select.Option value="pending">غیر فعال</Select.Option>
+            <Select.Option value="verified">تایید شده</Select.Option>
+            <Select.Option value="unverified">تایید نشده</Select.Option>
           </Select>
         </Form.Item>
         {/* <Form.Item label="# of Artworks" name={["number_of_artworks"]}>
           <InputNumber />
         </Form.Item> */}
       </Form>
-    </Create>
+    </Create >
   );
 };
