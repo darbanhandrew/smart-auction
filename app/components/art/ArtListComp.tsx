@@ -19,7 +19,7 @@ export const ArtListComp: React.FC<IResourceComponentsProps> = () => {
     <List>
       <Table {...tableProps} rowKey="id">
         <Table.Column dataIndex="id" title="شناسه" />
-        <Table.Column dataIndex={["artist", "name"]} title="هنرمند" />
+        {/* <Table.Column dataIndex={["artist", "name"]} title="هنرمند" /> */}
         <Table.Column dataIndex="name" title="نام" />
 
         <Table.Column

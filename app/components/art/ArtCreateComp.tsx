@@ -14,6 +14,7 @@ export const ArtCreateComp: React.FC<IResourceComponentsProps> = () => {
     onFinish({
       ...values,
       image: image.length > 0 ? image[0].uid : undefined,
+      // artist: values.artist.length > 0 ? values.artist.map((item: any) => item) : [],
     });
   };
   // const { selectProps: auctionArtSelectProps } = useSelect({
@@ -107,7 +108,7 @@ export const ArtCreateComp: React.FC<IResourceComponentsProps> = () => {
             },
           ]}
         >
-          <Select {...artistSelectProps} />
+          <Select {...artistSelectProps} mode="multiple" />
         </Form.Item>
         <Form.Item
           label="متریال"

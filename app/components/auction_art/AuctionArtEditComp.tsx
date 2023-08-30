@@ -22,12 +22,15 @@ export const AuctionArtEditComp: React.FC<IResourceComponentsProps> = () => {
 
     {
       resource: "art",
+      pagination: {
+        pageSize: 1000,
+      },
     }
   )
   useEffect(() => {
     if (artSelectQueryResult?.data) {
       const artOptionsRequest = artSelectQueryResult?.data?.map((art: any) => ({
-        label: `${art?.artist?.name ?? "نامشخص هنرمند"} - ${art?.size ?? "نامشخص سایز"} - ${art?.art_material?.name ?? "نامشخص Material"}`,
+        label: `${art?.artist[0]?.name ?? "نامشخص هنرمند"}${art?.artist?.length > 1 ? ` + ${art?.artist?.length} ` : ` `} - ${art?.size ?? "نامشخص سایز"} - ${art?.art_material?.name ?? "نامشخص Material"}`,
         value: art?.id,
       }));
       setArtOptions(artOptionsRequest);

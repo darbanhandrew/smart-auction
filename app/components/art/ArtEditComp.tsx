@@ -71,7 +71,7 @@ export const ArtEditComp: React.FC<IResourceComponentsProps> = () => {
           // auction_art: artData?.auction_art?.map(
           //   (auctionArt: any) => auctionArt.$id
           // ),
-          artist: artData?.artist?.$id,
+          artist: artData?.artist?.map((artist: any) => artist.$id),
           art_category: artData?.art_category?.$id,
           art_material: artData?.art_material?.$id,
           art_technique: artData?.art_technique?.$id,
@@ -136,7 +136,7 @@ export const ArtEditComp: React.FC<IResourceComponentsProps> = () => {
             },
           ]}
         >
-          <Select {...artistSelectProps} />
+          <Select {...artistSelectProps} mode="multiple" />
         </Form.Item>
         <Form.Item
           label="متریال"
