@@ -1,6 +1,6 @@
 import { Account, Appwrite, Storage, Functions } from "@refinedev/appwrite";
 
-const APPWRITE_URL = "https://core.smartauctionhouse.com/v1";
+const APPWRITE_URL = "https://adm.smartauctionhouse.com/v1";
 const APPWRITE_PROJECT = "smart_auction";
 const TOKEN_KEY = "adm-appwrite-jwt";
 

@@ -4,7 +4,7 @@ import * as cookie from "cookie";
 import Cookies from "js-cookie";
 
 import { account, appwriteClient, TOKEN_KEY } from "./utility";
-let COOKIE_DOMAIN = "adm.smartauctionhouse.com";
+let COOKIE_DOMAIN = "core.smartauctionhouse.com";
 if (process.env.NODE_ENV === "development") {
   COOKIE_DOMAIN = "localhost";
 }

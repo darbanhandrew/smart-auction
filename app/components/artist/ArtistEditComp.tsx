@@ -76,7 +76,7 @@ export const ArtistEditComp: React.FC<IResourceComponentsProps> = () => {
             value: value ? dayjs(value) : undefined,
           })}
         >
-          <DatePicker />
+          <DatePicker picker="year"/>
         </Form.Item>
         <Form.Item
           label="تاریخ فوت"
@@ -85,7 +85,7 @@ export const ArtistEditComp: React.FC<IResourceComponentsProps> = () => {
             value: value ? dayjs(value) : undefined,
           })}
         >
-          <DatePicker />
+          <DatePicker picker="year"/>
         </Form.Item>
         <Form.Item
           label="بیوگرافی"
@@ -102,7 +102,7 @@ export const ArtistEditComp: React.FC<IResourceComponentsProps> = () => {
           name="image"
           maxCount={1}
         />
-        <h1>آواتار</h1>
+        <h1>بنر</h1>
         <UploadImage
           state={bannerList}
           setState={(state) => setBannerList(state)}

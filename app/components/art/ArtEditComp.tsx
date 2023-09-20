@@ -125,7 +125,7 @@ export const ArtEditComp: React.FC<IResourceComponentsProps> = () => {
           })}
         >
           <DatePicker
-            showTime={{ format: 'HH:mm:ss' }}
+            picker="year"
           />
         </Form.Item>
         <UploadImage
