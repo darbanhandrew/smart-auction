@@ -4,12 +4,6 @@ import * as cookie from "cookie";
 import Cookies from "js-cookie";
 
 import { account, appwriteClient, TOKEN_KEY } from "./utility";
-let COOKIE_DOMAIN = "core.smartauctionhouse.com";
-if (process.env.NODE_ENV === "development") {
-  COOKIE_DOMAIN = "localhost";
-}
-
-const cookies = Cookies.withAttributes({ domain: COOKIE_DOMAIN, sameSite: "strict" });
 
 export const authProvider: AuthBindings = {
   login: async ({ email, password }) => {
@@ -19,7 +13,7 @@ export const authProvider: AuthBindings = {
       const { jwt } = await account.createJWT();
 
       if (jwt) {
-        cookies.set(TOKEN_KEY, jwt);
+        Cookies.set(TOKEN_KEY, jwt);
       }
 
       return {
@@ -41,15 +35,12 @@ export const authProvider: AuthBindings = {
     try {
       await account.deleteSession("current");
     } catch (error: any) {
-      cookies.remove(TOKEN_KEY);
-      appwriteClient.setJWT("");
-
       return {
-        success: true,
-        redirectTo: "/login",
+        success: false,
+        error,
       };
     }
-    cookies.remove(TOKEN_KEY);
+    Cookies.remove(TOKEN_KEY);
     appwriteClient.setJWT("");
 
     return {
@@ -69,7 +60,7 @@ export const authProvider: AuthBindings = {
       const parsedCookie = cookie.parse(request.headers.get("Cookie"));
       token = parsedCookie[TOKEN_KEY];
     } else {
-      const parsedCookie = cookies.get(TOKEN_KEY);
+      const parsedCookie = Cookies.get(TOKEN_KEY);
       token = parsedCookie ? JSON.parse(parsedCookie) : undefined;
     }
 
