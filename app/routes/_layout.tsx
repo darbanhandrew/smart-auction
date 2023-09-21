@@ -11,34 +11,34 @@ import { account, functions } from "~/utility";
 import { use } from "i18next";
 export default function BaseLayout() {
   //render menu using meta data label as title and name as resource name
-  useEffect(() => {
-    const getUserMemberships = async () => {
-      const user = await account.get();
+  // useEffect(() => {
+  //   const getUserMemberships = async () => {
+  //     const user = await account.get();
 
-      if (user) {
-        const result = await functions.createExecution("userFunctions", JSON.stringify({
-          type: "listMemberships",
-          body: {
-            user_id: user.$id
-          }
-        }));
+  //     if (user) {
+  //       const result = await functions.createExecution("userFunctions", JSON.stringify({
+  //         type: "listMemberships",
+  //         body: {
+  //           user_id: user.$id
+  //         }
+  //       }));
 
-        const responseObj = JSON.parse(result.response);
-        let isAdmin = false;
+  //       const responseObj = JSON.parse(result.response);
+  //       let isAdmin = false;
 
-        responseObj.memberships.forEach((membership: any) => {
-          if (membership.roles.includes("admin")) {
-            isAdmin = true;
-          }
-        });
-        if (!isAdmin) {
-          window.location.href = "https://desk.smartauctionhouse.com";
-        }
-      }
-    };
+  //       responseObj.memberships.forEach((membership: any) => {
+  //         if (membership.roles.includes("admin")) {
+  //           isAdmin = true;
+  //         }
+  //       });
+  //       if (!isAdmin) {
+  //         window.location.href = "https://desk.smartauctionhouse.com";
+  //       }
+  //     }
+  //   };
 
-    getUserMemberships();
-  }, []);
+  //   getUserMemberships();
+  // }, []);
   return (
 
     <>
