@@ -59,6 +59,17 @@ export const AuctionCreateComp: React.FC<IResourceComponentsProps> = () => {
           </Select>
         </Form.Item>
         <Form.Item
+          label="نمایش حراج"
+          name={["display"]}
+        >
+          <Select>
+            <Select.Option value="">لطفا انتخاب کنید</Select.Option>
+            <Select.Option value="active">فعال</Select.Option>
+            <Select.Option value="hidden">مخفی</Select.Option>
+            <Select.Option value="archive">آرشیو</Select.Option>
+          </Select>
+        </Form.Item>
+        <Form.Item
           label="تاریخ شروع"
           name={["start_date"]}
           rules={[
