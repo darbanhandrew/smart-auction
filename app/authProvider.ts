@@ -35,9 +35,12 @@ export const authProvider: AuthBindings = {
     try {
       await account.deleteSession("current");
     } catch (error: any) {
+      Cookies.remove(TOKEN_KEY);
+      appwriteClient.setJWT("");
       return {
         success: false,
         error,
+        redirectTo: "/login",
       };
     }
     Cookies.remove(TOKEN_KEY);
