@@ -14,6 +14,14 @@ import dayjs from "dayjs";
 export const UserProfileListComp: React.FC<IResourceComponentsProps> = () => {
     const { tableProps } = useTable({
         syncWithLocation: true,
+        sorters: {
+            initial: [
+              {
+                field:"$createdAt",
+                order:"desc"
+              },
+            ]
+          }
     });
 
 

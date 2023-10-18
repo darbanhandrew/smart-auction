@@ -12,6 +12,14 @@ import { Table, Space } from "antd";
 export const ArtistListComp: React.FC<IResourceComponentsProps> = () => {
   const { tableProps } = useTable({
     syncWithLocation: true,
+    sorters: {
+      initial: [
+        {
+          field:"$createdAt",
+          order:"desc"
+        },
+      ]
+    }
   });
 
   return (

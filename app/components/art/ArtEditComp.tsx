@@ -10,10 +10,12 @@ import { storage } from "~/utility";
 export const ArtEditComp: React.FC<IResourceComponentsProps> = () => {
   const { formProps, saveButtonProps, queryResult, onFinish } = useForm();
   const [image, setImage] = React.useState<UploadFile[]>([]);
+  const [gallery, setGallery] = React.useState<UploadFile[]>([]);
   const handleOnFinish = async (values: any) => {
     onFinish({
       ...values,
       image: image.length > 0 ? image[0].uid : undefined,
+      gallery: gallery.length > 0 ? gallery.map((item: any) => item.uid) : [],
     });
   };
 
@@ -31,6 +33,17 @@ export const ArtEditComp: React.FC<IResourceComponentsProps> = () => {
               .toString(),
           },
         ]);
+      artData?.gallery &&
+        setGallery(
+          artData.gallery.map((item: any) => ({
+            uid: item,
+            name: item,
+            status: "done",
+            url: storage
+              .getFilePreview("images", item, 200)
+              .toString(),
+          }))
+        );
     }
   }, [artData]);
   const { selectProps: artistSelectProps } = useSelect({
@@ -107,7 +120,13 @@ export const ArtEditComp: React.FC<IResourceComponentsProps> = () => {
           <Input />
         </Form.Item>
         <Form.Item
-          label="توضیحات"
+          label="توضیح"
+          name={["description"]}
+        >
+          <Input.TextArea autoSize={{ minRows: 3 }} />
+        </Form.Item>
+        <Form.Item
+          label="امضا"
           name={["signature"]}
         >
           <Input.TextArea autoSize={{ minRows: 3 }} />
@@ -133,6 +152,16 @@ export const ArtEditComp: React.FC<IResourceComponentsProps> = () => {
           setState={(state) => setImage(state)}
           name="image"
           maxCount={1}
+        />
+        <h2>
+          گالری
+        </h2>
+        <UploadImage
+          state={gallery}
+          setState={(state) => setGallery(state)}
+          name="gallery"
+          multiple
+          maxCount={5}
         />
         <Form.Item
           label="هنرمند"

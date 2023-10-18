@@ -7,13 +7,22 @@ import {
   ShowButton,
   DateField,
   TagField,
+  getDefaultSortOrder
 } from "@refinedev/antd";
 import { Table, Space } from "antd";
 import { storage } from "~/utility";
 import dayjs from "dayjs";
 export const AuctionArtListComp: React.FC<IResourceComponentsProps> = () => {
-  const { tableProps } = useTable({
+  const { tableProps, sorter } = useTable({
     syncWithLocation: true,
+    sorters: {
+      initial: [
+        {
+          field:"$createdAt",
+          order:"desc"
+        },
+      ]
+    }
   });
 
   const { data: bidData, isLoading: bidIsLoading } = useMany({
@@ -31,7 +40,19 @@ export const AuctionArtListComp: React.FC<IResourceComponentsProps> = () => {
         <Table.Column dataIndex={["art", "name"]} title="اثر" />
         <Table.Column dataIndex={["art", "artist", "name"]} title="نام هنرمند" />
         <Table.Column dataIndex={["auction", "name"]} title="نام حراج" />
-        <Table.Column dataIndex="lot" title="Lot" />
+        <Table.Column dataIndex="lot" title="Lot"
+        sorter={{multiple:2}}
+        defaultSortOrder={getDefaultSortOrder("lot",sorter)} 
+        />
+        <Table.Column dataIndex="number_of_bids" title="تعداد بید"
+        sorter={{multiple:1}}
+        defaultSortOrder={getDefaultSortOrder("number_of_bids",sorter)} 
+        />
+        <Table.Column dataIndex="current_price" title="قیمت فعلی"
+        sorter={{multiple:1}}
+        render={(value: any) => <span><>{value.toLocaleString('fa-IR')} تومان</></span>}
+        defaultSortOrder={getDefaultSortOrder("current_price",sorter)} 
+        />
         <Table.Column
           dataIndex={["auction_start_date"]}
           title="تاریخ شروع"

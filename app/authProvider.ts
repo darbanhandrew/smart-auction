@@ -80,6 +80,7 @@ export const authProvider: AuthBindings = {
         };
       }
     } catch (error: any) {
+      //refresh token if expire
       return {
         authenticated: false,
         error: error,

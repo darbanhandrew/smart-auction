@@ -13,6 +13,14 @@ import dayjs from "dayjs";
 export const AuctionListComp: React.FC<IResourceComponentsProps> = () => {
   const { tableProps } = useTable({
     syncWithLocation: true,
+    sorters: {
+      initial: [
+        {
+          field:"$createdAt",
+          order:"desc"
+        },
+      ]
+    }
   });
 
   return (

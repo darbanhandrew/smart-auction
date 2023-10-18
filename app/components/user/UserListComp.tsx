@@ -2,7 +2,6 @@ import React from "react";
 import { List, Table, Button, Space, Row, Col } from "antd";
 import { Link } from "@remix-run/react";
 import { EditOutlined, DeleteOutlined, EyeOutlined, ProfileOutlined, PlusCircleOutlined } from '@ant-design/icons';
-
 /*
     {
       '$id': '64783f832c4b142417ff',
@@ -189,7 +188,9 @@ export default function UserListComp(data: any) {
       }
       bordered
     >
-      <Table columns={columns} dataSource={JSON.parse(data.data).users} />
+      <Table columns={columns} dataSource={
+        data?.data
+      } />
     </List>
 
   );

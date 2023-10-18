@@ -13,6 +13,14 @@ import { storage } from "~/utility";
 export const ArtListComp: React.FC<IResourceComponentsProps> = () => {
   const { tableProps } = useTable({
     syncWithLocation: true,
+    sorters: {
+      initial: [
+        {
+          field:"$createdAt",
+          order:"desc"
+        },
+      ]
+    }
   });
 
   return (
