@@ -13,11 +13,7 @@ export const authProvider: AuthBindings = {
       const { jwt } = await account.createJWT();
 
       if (jwt) {
-        Cookies.set(TOKEN_KEY, jwt, { 
-         domain: 'admin.smartauctionhouse.com',
-         path: '/',
-         sameSite:'None'
-        });
+        Cookies.set(TOKEN_KEY, jwt);
       }
 
       return {
