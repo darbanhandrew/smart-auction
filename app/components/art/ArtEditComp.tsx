@@ -136,7 +136,7 @@ export const ArtEditComp: React.FC<IResourceComponentsProps> = () => {
           name={["date_of_artwork"]}
           rules={[
             {
-              required: true,
+              required: false,
             },
           ]}
           getValueProps={(value) => ({

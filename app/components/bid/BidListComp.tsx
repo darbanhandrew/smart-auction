@@ -12,7 +12,7 @@ import {
 import { Table, Space } from "antd";
 import dayjs from "dayjs";
 export const BidListComp: React.FC<IResourceComponentsProps> = () => {
-  const { tableProps, sorters } = useTable({
+  const { tableProps, sorter } = useTable({
     syncWithLocation: true,
     sorters: {
       mode: "server",
@@ -36,9 +36,10 @@ export const BidListComp: React.FC<IResourceComponentsProps> = () => {
     <List>
       <Table {...tableProps} rowKey="id">
         <Table.Column dataIndex="id" title="شناسه" defaultSortOrder={
-          getDefaultSortOrder("id", sorters)
-        } />
+          getDefaultSortOrder("id", sorter)} sorter={{multiple:2}} />
         <Table.Column dataIndex="amount" title="مبلغ پیشنهادی"
+          sorter={{multiple:1}}
+          defaultSortOrder={getDefaultSortOrder("amount", sorter)}
           render={(value: any) => <span><>{value.toLocaleString('fa-IR')} تومان</></span>}
         />
         <Table.Column dataIndex="status" title="وضعیت"
@@ -52,6 +53,8 @@ export const BidListComp: React.FC<IResourceComponentsProps> = () => {
             return "در انتظار بررسی";
           }
           }
+          sorter={{multiple:3}}
+          defaultSortOrder={getDefaultSortOrder("status", sorter)}
         />
 
         <Table.Column
@@ -61,11 +64,15 @@ export const BidListComp: React.FC<IResourceComponentsProps> = () => {
         <Table.Column
           title="زمان ثبت بید"
           dataIndex={["$createdAt"]}
+          sorter={{multiple:4}}
+          defaultSortOrder={getDefaultSortOrder("$createdAt", sorter)}
           render={(value: any) => <span><>{dayjs(value).format("YYYY/MM/DD HH:MM:ss")}</></span>}
         />
         <Table.Column
           title="زمان تعیین وضعیت بید"
           dataIndex={["$updatedAt"]}
+          sorter={{multiple:5}}
+          defaultSortOrder={getDefaultSortOrder("$updatedAt", sorter)}
           render={(value: any) => <span><>{dayjs(value).format("YYYY/MM/DD HH:MM:ss")}</></span>}
         />
         <Table.Column

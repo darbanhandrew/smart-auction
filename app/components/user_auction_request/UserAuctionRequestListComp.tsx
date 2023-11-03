@@ -6,11 +6,12 @@ import {
     EditButton,
     ShowButton,
     DateField,
+    getDefaultSortOrder
 } from "@refinedev/antd";
 import { Table, Space } from "antd";
 import dayjs from 'dayjs';
 export const UserAuctionRequestListComp: React.FC<IResourceComponentsProps> = () => {
-    const { tableProps } = useTable({
+    const { tableProps,sorter } = useTable({
         syncWithLocation: true,
         sorters: {
             initial: [
@@ -26,19 +27,38 @@ export const UserAuctionRequestListComp: React.FC<IResourceComponentsProps> = ()
         <List>
             <Table {...tableProps} rowKey="id">
                 <Table.Column dataIndex="id" title="شناسه" />
-                <Table.Column dataIndex="status" title="وضعیت" />
+                <Table.Column dataIndex="status" title="وضعیت" 
+                render={(value: string) => {
+                    switch (value) {
+                        case "pending":
+                            return "در انتظار بررسی";
+                        case "accepted":
+                            return "تایید شده";
+                        case "rejected":
+                            return "رد شده";
+                        default:
+                            return "نامشخص";
+                    }
+                }}
+                sorter={{multiple:4}}
+                defaultSortOrder={getDefaultSortOrder("status",sorter)}
+                />
                 <Table.Column dataIndex="note" title="Note" />
                 <Table.Column dataIndex={["user_id"]} title="کاربر" />
                 <Table.Column
                     dataIndex={["$createdAt"]}
-                    title="$created At"
+                    title="تاریخ ایحاد سند"
+                    sorter={{multiple:1}}
+                    defaultSortOrder={getDefaultSortOrder("$createdAt",sorter)}
                     render={(value: Date) => {
                         return dayjs(value).format('DD/MM/YYYY HH:mm:ss')
                     }}
                 />
                 <Table.Column
                     dataIndex={["$updatedAt"]}
-                    title="$updated At"
+                    title="آخرین تغییر"
+                    sorter={{multiple:3}}
+                    defaultSortOrder={getDefaultSortOrder("$updatedAt",sorter)}
                     render={(value: Date) => {
                         return dayjs(value).format('DD/MM/YYYY HH:mm:ss')
                     }}

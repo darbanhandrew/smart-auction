@@ -21,6 +21,7 @@
     "@remix-run/node": "^1.6.7",
     "@remix-run/react": "^1.6.7",
     "@remix-run/serve": "^1.6.7",
+    "@types/cookie": "^0.5.3",
     "antd": "^5.0.5",
     "antd-jalali": "^1.0.3",
     "cookie": "^0.5.0",

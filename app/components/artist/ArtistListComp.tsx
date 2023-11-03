@@ -6,11 +6,13 @@ import {
   EditButton,
   ShowButton,
   DateField,
+  getDefaultSortOrder
 } from "@refinedev/antd";
+import dayjs from "dayjs";
 import { Table, Space } from "antd";
 
 export const ArtistListComp: React.FC<IResourceComponentsProps> = () => {
-  const { tableProps } = useTable({
+  const { tableProps,sorter } = useTable({
     syncWithLocation: true,
     sorters: {
       initial: [
@@ -26,7 +28,10 @@ export const ArtistListComp: React.FC<IResourceComponentsProps> = () => {
     <List>
       <Table {...tableProps} rowKey="id">
         <Table.Column dataIndex="id" title="شناسه" />
-        <Table.Column dataIndex="name" title="نام و نام خانوادگی" />
+        <Table.Column dataIndex="name" title="نام و نام خانوادگی" 
+        sorter={{multiple:2}}
+        defaultSortOrder={getDefaultSortOrder("name",sorter)}
+        />
 
         <Table.Column
           dataIndex="art"
@@ -36,7 +41,20 @@ export const ArtistListComp: React.FC<IResourceComponentsProps> = () => {
             value?.length
           }
         />
-
+        <Table.Column
+          dataIndex={["$createdAt"]}
+          title="تاریخ ایحاد سند"
+          sorter={{multiple:1}}
+          defaultSortOrder={getDefaultSortOrder("$createdAt",sorter)}
+          render={(value: any) => <span><>{dayjs(value).format("YYYY/MM/DD")}</></span>}
+        />
+        <Table.Column
+          dataIndex={["$updatedAt"]}
+          title="آخرین تغییر"
+          sorter={{multiple:3}}
+          defaultSortOrder={getDefaultSortOrder("$updatedAt",sorter)}
+          render={(value: any) => <span><>{dayjs(value).format("YYYY/MM/DD")}</></span>}
+        />
         <Table.Column
           title="عملیات"
           dataIndex="actions"

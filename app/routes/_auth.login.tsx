@@ -1,6 +1,6 @@
 import { AppIcon } from "@components/app-icon";
-import { AuthPage, ThemedTitleV2 } from "@refinedev/antd";
-
+import { ThemedTitleV2 } from "@refinedev/antd";
+import {AuthPage} from "../components/pages/auth";
 export default function Login() {
   return (
     <AuthPage

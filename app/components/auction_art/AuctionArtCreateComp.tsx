@@ -129,7 +129,7 @@ export const AuctionArtCreateComp: React.FC<IResourceComponentsProps> = () => {
           name={["min_price"]}
           rules={[
             {
-              required: true,
+              required: false,
             },
           ]}
         >
@@ -145,7 +145,7 @@ export const AuctionArtCreateComp: React.FC<IResourceComponentsProps> = () => {
           name={["max_price"]}
           rules={[
             {
-              required: true,
+              required: false,
             },
           ]}
         >

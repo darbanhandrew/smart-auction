@@ -78,6 +78,20 @@ export const AuctionArtListComp: React.FC<IResourceComponentsProps> = () => {
           }
         />
         <Table.Column
+          dataIndex={["$createdAt"]}
+          title="تاریخ ایحاد سند"
+          sorter={{multiple:1}}
+          defaultSortOrder={getDefaultSortOrder("$createdAt",sorter)}
+          render={(value: any) => <span><>{dayjs(value).format("YYYY/MM/DD")}</></span>}
+        />
+        <Table.Column
+          dataIndex={["$updatedAt"]}
+          title="آخرین تغییر"
+          sorter={{multiple:3}}
+          defaultSortOrder={getDefaultSortOrder("$updatedAt",sorter)}
+          render={(value: any) => <span><>{dayjs(value).format("YYYY/MM/DD")}</></span>}
+        />
+        <Table.Column
           title="عملیات"
           dataIndex="actions"
           render={(_, record: BaseRecord) => (

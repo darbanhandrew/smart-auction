@@ -8,11 +8,12 @@ import {
     TagField,
     EmailField,
     DateField,
+    getDefaultSortOrder
 } from "@refinedev/antd";
 import { Table, Space } from "antd";
 import dayjs from "dayjs";
 export const UserProfileListComp: React.FC<IResourceComponentsProps> = () => {
-    const { tableProps } = useTable({
+    const { tableProps,sorter } = useTable({
         syncWithLocation: true,
         sorters: {
             initial: [
@@ -39,16 +40,19 @@ export const UserProfileListComp: React.FC<IResourceComponentsProps> = () => {
                 />
                 <Table.Column dataIndex={["user_id"]} title="کاربر" />
                 <Table.Column
-                    dataIndex={["$createdAt"]}
-                    title="$created At"
-                    render={(value: any) => <span><>{dayjs(value).format("YYYY/MM/DD HH:MM:ss")}</></span>}
+                dataIndex={["$createdAt"]}
+                title="تاریخ ایحاد سند"
+                sorter={{multiple:1}}
+                defaultSortOrder={getDefaultSortOrder("$createdAt",sorter)}
+                render={(value: any) => <span><>{dayjs(value).format("YYYY/MM/DD")}</></span>}
                 />
                 <Table.Column
-                    dataIndex={["$updatedAt"]}
-                    title="$updated At"
-                    render={(value: any) => <span><>{dayjs(value).format("YYYY/MM/DD HH:MM:ss")}</></span>}
+                dataIndex={["$updatedAt"]}
+                title="آخرین تغییر"
+                sorter={{multiple:3}}
+                defaultSortOrder={getDefaultSortOrder("$updatedAt",sorter)}
+                render={(value: any) => <span><>{dayjs(value).format("YYYY/MM/DD")}</></span>}
                 />
-
 
                 <Table.Column
                     title="عملیات"
