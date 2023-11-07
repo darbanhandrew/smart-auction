@@ -41,7 +41,12 @@ export const AuctionArtEditComp: React.FC<IResourceComponentsProps> = () => {
     <Edit saveButtonProps={{
       ...saveButtonProps,
       children: "ذخیره",
-    }}>
+    }}
+    deleteButtonProps={{
+      children:"حذف"
+    }}
+    title="ویرایش اثر حراجی"
+    >
       <Form
         {...formProps}
         layout="vertical"

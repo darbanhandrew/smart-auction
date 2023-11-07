@@ -22,7 +22,12 @@ export const BidStepEditComp: React.FC<IResourceComponentsProps> = () => {
     <Edit saveButtonProps={{
       ...saveButtonProps,
       children: "ذخیره",
-    }}>
+    }}
+    deleteButtonProps={{
+      children:"حذف"
+    }}
+    title="ویرایش بید استپ"
+    >
       <Form
         {...formProps}
         layout="vertical"

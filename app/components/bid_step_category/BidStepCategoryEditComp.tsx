@@ -22,7 +22,12 @@ export const BidStepCategoryEditComp: React.FC<
     <Edit saveButtonProps={{
       ...saveButtonProps,
       children: "ذخیره",
-    }}>
+    }}
+    deleteButtonProps={{
+      children:"حذف"
+    }}
+    title="ویرایش گروه بید استپ"
+    >
       <Form {...formProps} layout="vertical">
         <h1>
           <strong>{bidStepCategoryData?.id}</strong>

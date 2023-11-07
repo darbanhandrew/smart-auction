@@ -25,7 +25,11 @@ export const AuctionListComp: React.FC<IResourceComponentsProps> = () => {
   });
 
   return (
-    <List>
+    <List
+    createButtonProps={{
+      children:"ایجاد حراجی"
+    }}
+    >
       <Table {...tableProps} rowKey="id">
         <Table.Column dataIndex="id" title="شناسه" />
         <Table.Column dataIndex="name" title="نام"

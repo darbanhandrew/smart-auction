@@ -53,6 +53,9 @@ export const ArtistEditComp: React.FC<IResourceComponentsProps> = () => {
         ...saveButtonProps,
         children: "ذخیره",
       }}
+      deleteButtonProps={{
+        children:"حذف"
+      }}
     >
       <Form {...formProps} layout="vertical" onFinish={handleOnFinish}>
         <h1>

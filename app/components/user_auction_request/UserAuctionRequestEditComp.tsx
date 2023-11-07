@@ -17,7 +17,12 @@ export function UserAuctionRequestEditComp(data: any) {
         <Edit saveButtonProps={{
             ...saveButtonProps,
             children: "ذخیره",
-        }}>
+        }}
+        deleteButtonProps={{
+            children:"حذف"
+        }}
+        title="ویرایش درخواست"
+        >
             <Form {...formProps} layout="vertical" initialValues={{
                 ...formProps?.initialValues,
                 auction: userAuctionRequestData?.auction?.$id,
@@ -35,19 +40,19 @@ export function UserAuctionRequestEditComp(data: any) {
                     ]}
                 >
                     <Select>
-                        <Select.Option value="pending">Pending</Select.Option>
-                        <Select.Option value="accepted">Accepted</Select.Option>
-                        <Select.Option value="rejected">Rejected</Select.Option>
+                        <Select.Option value="pending">در حال بررسی</Select.Option>
+                        <Select.Option value="accepted">تایید شده</Select.Option>
+                        <Select.Option value="rejected">رد شده</Select.Option>
                     </Select>
                 </Form.Item>
                 <Form.Item
-                    label="Note"
+                    label="یادداشت"
                     name={["note"]}
                 >
                     <Input />
                 </Form.Item>
                 <Form.Item
-                    label="User"
+                    label="کاربر"
                     name={["user_id"]}
                     rules={[
                         {

@@ -21,18 +21,18 @@ export default function UserCreateComp() {
             <Form.Item label="نام" name="name">
                 <Input />
             </Form.Item>
-            <Form.Item label="Email" name="email">
+            <Form.Item label="ایمیل" name="email">
                 <Input />
             </Form.Item>
-            <Form.Item label="Phone" name="phone">
+            <Form.Item label="شماره تلفن" name="phone">
                 <Input />
             </Form.Item>
-            <Form.Item label="Password" name="password">
+            <Form.Item label="رمز عبور" name="password">
                 <Input />
             </Form.Item>
             <Form.Item >
                 <Button type="primary" htmlType="submit">
-                    Submit
+                    ایجاد کاربر
                 </Button>
             </Form.Item>
         </Form>

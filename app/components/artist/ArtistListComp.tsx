@@ -25,7 +25,11 @@ export const ArtistListComp: React.FC<IResourceComponentsProps> = () => {
   });
 
   return (
-    <List>
+    <List
+    createButtonProps={{
+      children:"ایجاد هنرمند"
+    }}
+    >
       <Table {...tableProps} rowKey="id">
         <Table.Column dataIndex="id" title="شناسه" />
         <Table.Column dataIndex="name" title="نام و نام خانوادگی" 

@@ -24,7 +24,11 @@ export const UserAuctionRequestListComp: React.FC<IResourceComponentsProps> = ()
     });
 
     return (
-        <List>
+        <List
+        createButtonProps={{
+            children:"ایجاد درخواست"
+        }}
+        >
             <Table {...tableProps} rowKey="id">
                 <Table.Column dataIndex="id" title="شناسه" />
                 <Table.Column dataIndex="status" title="وضعیت" 
@@ -43,7 +47,7 @@ export const UserAuctionRequestListComp: React.FC<IResourceComponentsProps> = ()
                 sorter={{multiple:4}}
                 defaultSortOrder={getDefaultSortOrder("status",sorter)}
                 />
-                <Table.Column dataIndex="note" title="Note" />
+                <Table.Column dataIndex="note" title="یادداشت" />
                 <Table.Column dataIndex={["user_id"]} title="کاربر" />
                 <Table.Column
                     dataIndex={["$createdAt"]}
@@ -64,7 +68,7 @@ export const UserAuctionRequestListComp: React.FC<IResourceComponentsProps> = ()
                     }}
                 />
 
-                <Table.Column dataIndex={["auction", "name"]} title="Auction" />
+                <Table.Column dataIndex={["auction", "name"]} title="حراجی" />
 
                 <Table.Column
                     title="عملیات"

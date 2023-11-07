@@ -283,7 +283,7 @@ export default function App() {
                       meta: {
                         canDelete: true,
                         label: "پروفایل کاربران",
-                        parent: "Users&Requests"
+                        parent: "Users&Requests",
                       },
                     },
                     {

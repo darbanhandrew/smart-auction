@@ -24,7 +24,12 @@ export const BidEditComp: React.FC<IResourceComponentsProps> = () => {
         <Edit saveButtonProps={{
             ...saveButtonProps,
             children: "ذخیره",
-        }}>
+        }}
+        deleteButtonProps={{
+            children:"حذف"
+        }}
+        title="ویرایش پیشنهاد"
+        >
             <Form {...formProps} layout="vertical">
                 <Form.Item
                     label="Amount"

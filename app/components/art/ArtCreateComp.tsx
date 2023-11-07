@@ -56,7 +56,9 @@ export const ArtCreateComp: React.FC<IResourceComponentsProps> = () => {
     <Create saveButtonProps={{
       ...saveButtonProps,
       children: "ذخیره",
-    }}>
+    }}
+    title="ایجاد اثر"
+    >
       <Form {...formProps} layout="vertical" onFinish={handleOnFinish}>
         <Form.Item
           label="نام"

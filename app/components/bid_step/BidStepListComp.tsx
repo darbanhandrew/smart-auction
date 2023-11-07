@@ -25,7 +25,11 @@ export const BidStepListComp: React.FC<IResourceComponentsProps> = () => {
     }
   });
   return (
-    <List>
+    <List
+    createButtonProps={{
+      children:"ایجاد بید استپ"
+    }}
+    >
       <Table {...tableProps} rowKey="id">
         <Table.Column dataIndex="id" title="شناسه" />
         <Table.Column dataIndex="start_price" title="قیمت پایه"

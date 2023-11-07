@@ -1,6 +1,6 @@
 import React from "react";
 import { IResourceComponentsProps } from "@refinedev/core";
-import { Edit, useForm, useSelect } from "@refinedev/antd";
+import { Edit, useForm, useSelect, Breadcrumb } from "@refinedev/antd";
 import { Form, Input, DatePicker, Select } from "antd";
 import dayjs from "dayjs";
 import { UploadImage } from "../upload_image/UploadImage";
@@ -81,7 +81,12 @@ export const ArtEditComp: React.FC<IResourceComponentsProps> = () => {
     <Edit saveButtonProps={{
       ...saveButtonProps,
       children: "ذخیره",
-    }}>
+    }}
+    deleteButtonProps={{
+      children:"حذف"
+    }}
+    title="ویرایش اثر"
+    >
       <Form
         {...formProps}
         layout="vertical"

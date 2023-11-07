@@ -9,7 +9,12 @@ export const ArtCategoryEditComp: React.FC<IResourceComponentsProps> = () => {
     <Edit saveButtonProps={{
       ...saveButtonProps,
       children: "ذخیره",
-    }}>
+    }}
+    deleteButtonProps={{
+      children:"حذف"
+    }}
+    title="ویرایش دسته بندی"
+    >
       <Form {...formProps} layout="vertical">
         <h1>
           <strong>{artCategoryData?.id}</strong>

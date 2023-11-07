@@ -9,7 +9,9 @@ export const ArtCategoryCreateComp: React.FC<IResourceComponentsProps> = () => {
     <Create saveButtonProps={{
       ...saveButtonProps,
       children: "ذخیره",
-    }}>
+    }}
+    title="ایجاد دسته بندی"
+    >
       <Form {...formProps} layout="vertical">
         <Form.Item
           label="نام"

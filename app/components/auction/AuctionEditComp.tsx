@@ -82,6 +82,11 @@ export const AuctionEditComp: React.FC<IResourceComponentsProps> = () => {
         ...saveButtonProps,
         children: "ذخیره",
       }}
+      deleteButtonProps={
+        {
+          children:"حذف"
+        }
+      }
       //change the title Edit to Auction Edit
       title="ویرایش حراجی"
     //change the edit part of breadcrumb

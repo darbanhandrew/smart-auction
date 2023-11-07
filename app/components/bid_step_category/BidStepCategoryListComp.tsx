@@ -27,7 +27,11 @@ export const BidStepCategoryListComp: React.FC<
   });
 
   return (
-    <List>
+    <List
+    createButtonProps={{
+      children:"ایجاد گروه بید استپ"
+    }}
+    >
       <Table {...tableProps} rowKey="id">
         <Table.Column dataIndex="id" title="شناسه" />
         <Table.Column dataIndex="name" title="نام" />

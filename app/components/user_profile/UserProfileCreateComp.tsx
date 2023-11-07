@@ -11,10 +11,12 @@ export const UserProfileCreateComp: React.FC<IResourceComponentsProps> = () => {
         <Create saveButtonProps={{
             ...saveButtonProps,
             children: "ذخیره",
-        }}>
+        }}
+        title="ایجاد پروفایل کاربر"
+        >
             <Form {...formProps} layout="vertical">
                 <Form.Item
-                    label="Phone Number"
+                    label="شماره تلفن"
                     name={["phone_number"]}
                     rules={[
                         {
@@ -25,7 +27,7 @@ export const UserProfileCreateComp: React.FC<IResourceComponentsProps> = () => {
                     <Input />
                 </Form.Item>
                 <Form.Item
-                    label="Email"
+                    label="ایمیل"
                     name={["email"]}
                     rules={[
                         {

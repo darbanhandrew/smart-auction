@@ -11,7 +11,12 @@ export const ArtTechniqueEditComp: React.FC<IResourceComponentsProps> = () => {
     <Edit saveButtonProps={{
       ...saveButtonProps,
       children: "ذخیره",
-    }}>
+    }}
+    deleteButtonProps={{
+      children:"حذف"
+    }}
+    title="ویرایش تکنیک"
+    >
       <Form {...formProps} layout="vertical">
         <h1>
           <strong>{artTechniqueData?.id}</strong>

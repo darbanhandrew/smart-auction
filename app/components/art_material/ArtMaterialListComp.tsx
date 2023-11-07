@@ -18,7 +18,11 @@ export const ArtMaterialListComp: React.FC<IResourceComponentsProps> = () => {
   });
 
   return (
-    <List>
+    <List
+    createButtonProps={{
+      children:"ایجاد ماده"
+    }}
+    >
       <Table {...tableProps} rowKey="id">
         <Table.Column dataIndex="id" title="شناسه" />
         <Table.Column dataIndex="name" title="نام" 

@@ -38,7 +38,10 @@ export const AuctionArtCreateComp: React.FC<IResourceComponentsProps> = () => {
     <Create saveButtonProps={{
       ...saveButtonProps,
       children: "ذخیره",
-    }}>
+      
+    }}
+    title="ایجاد اثر حراجی"
+    >
       <Form {...formProps} layout="vertical">
         <Form.Item
           label="Lot"

@@ -17,7 +17,9 @@ export const BidStepCategoryCreateComp: React.FC<
     <Create saveButtonProps={{
       ...saveButtonProps,
       children: "ذخیره",
-    }}>
+    }}
+    title="ایجاد گروه بید استپ"
+    >
       <Form {...formProps} layout="vertical">
         <Form.Item
           label="نام"

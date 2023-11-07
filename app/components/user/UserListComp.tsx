@@ -122,7 +122,7 @@ const columns = [
     key: "$id",
   },
   {
-    title: "Phone Verification",
+    title: "تاییدیه موبایل",
     dataIndex: "phoneVerification",
     key: "phoneVerification",
   },
@@ -132,12 +132,12 @@ const columns = [
     key: "name",
   },
   {
-    title: "Email",
+    title: "ایمیل",
     dataIndex: "email",
     key: "email",
   },
   {
-    title: "Phone",
+    title: "شماره تلفن",
     dataIndex: "phone",
     key: "phone",
   },
@@ -147,14 +147,14 @@ const columns = [
     key: "status",
   },
   {
-    title: "Action",
+    title: "عملیات",
     key: 'action',
     render: (_: any, record: User) => (
       <Space>
-        <Link to={`/user/edit/${record.$id}`}><Button type="primary" icon={<EditOutlined />}>Edit</Button></Link><Space />
-        <Link to={`/user/delete/${record.$id}`}><Button type="primary" danger icon={<DeleteOutlined />}>Delete</Button></Link><Space />
-        <Link to={`/user/show/${record.$id}`}><Button type="dashed" icon={<EyeOutlined />}>Show</Button></Link><Space />
-        <Link to={`/user_profile/edit/${record.prefs.profile_id}`}><Button type="ghost" icon={<ProfileOutlined />}>Show Profile</Button></Link><Space />
+        {/* <Link to={`/user/edit/${record.$id}`}><Button type="primary" icon={<EditOutlined />}>Edit</Button></Link><Space /> */}
+        <Link to={`/user/delete/${record.$id}`}><Button type="primary" danger icon={<DeleteOutlined />}>حذف</Button></Link><Space />
+        <Link to={`/user/show/${record.$id}`}><Button type="dashed" icon={<EyeOutlined />}>مشاهده</Button></Link><Space />
+        <Link to={`/user_profile/edit/${record.prefs.profile_id}`}><Button type="ghost" icon={<ProfileOutlined />}>مشاهده پروفایل کاربر</Button></Link><Space />
       </Space>
     )
   }
@@ -179,7 +179,7 @@ export default function UserListComp(data: any) {
           <Col span={4}>
             <Space>
               <Link to="/user/create">
-                <Button type="primary" icon={<PlusCircleOutlined />}>Create</Button>
+                <Button type="primary" icon={<PlusCircleOutlined />}>ایجاد کاربر</Button>
               </Link>
             </Space>
           </Col>

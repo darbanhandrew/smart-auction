@@ -14,7 +14,9 @@ export const BidStepCreateComp: React.FC<IResourceComponentsProps> = () => {
     <Create saveButtonProps={{
       ...saveButtonProps,
       children: "ذخیره",
-    }}>
+    }}
+    title="ایجاد بید استپ"
+    >
       <Form {...formProps} layout="vertical">
         <Form.Item
           label="Start Price"

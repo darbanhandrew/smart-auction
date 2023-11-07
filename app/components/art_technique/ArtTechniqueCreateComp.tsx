@@ -11,7 +11,9 @@ export const ArtTechniqueCreateComp: React.FC<
     <Create saveButtonProps={{
       ...saveButtonProps,
       children: "ذخیره",
-    }}>
+    }}
+    title="ایجاد تکنیک"
+    >
       <Form {...formProps} layout="vertical">
         <Form.Item
           label="نام"

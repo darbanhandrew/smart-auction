@@ -33,7 +33,11 @@ export const BidListComp: React.FC<IResourceComponentsProps> = () => {
     resource: "user_profile",
   });
   return (
-    <List>
+    <List
+    createButtonProps={{
+      children:"ایجاد پیشنهاد"
+    }}
+    >
       <Table {...tableProps} rowKey="id">
         <Table.Column dataIndex="id" title="شناسه" defaultSortOrder={
           getDefaultSortOrder("id", sorter)} sorter={{multiple:2}} />

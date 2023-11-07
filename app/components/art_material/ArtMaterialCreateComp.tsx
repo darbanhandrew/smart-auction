@@ -12,7 +12,9 @@ export const ArtMaterialCreateComp: React.FC<IResourceComponentsProps> = () => {
     <Create saveButtonProps={{
       ...saveButtonProps,
       children: "ذخیره",
-    }}>
+    }}
+    title="ایجاد ماده"
+    >
       <Form {...formProps} layout="vertical">
         <Form.Item
           label="نام"

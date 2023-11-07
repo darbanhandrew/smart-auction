@@ -47,7 +47,7 @@ export default function BaseLayout() {
         Title={({ collapsed }) => (
           <ThemedTitleV2
             collapsed={collapsed}
-            text="Smart Auction Dashboard"
+            text="میز کار اسمارت آکشن"
             icon={<AppIcon />}
           />
         )}

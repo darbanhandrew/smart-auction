@@ -66,7 +66,12 @@ export const AuctionHouseEditComp: React.FC<IResourceComponentsProps> = () => {
     <Edit saveButtonProps={{
       ...saveButtonProps,
       children: "ذخیره",
-    }}>
+    }}
+    title="ویرایش خانه حراج"
+    deleteButtonProps={{
+      children:"حذف"
+    }}
+    >
       <Form
         {...formProps}
         initialValues={{

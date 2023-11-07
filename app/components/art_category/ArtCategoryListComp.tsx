@@ -26,7 +26,11 @@ export const ArtCategoryListComp: React.FC<IResourceComponentsProps> = () => {
   });
 
   return (
-    <List>
+    <List    
+    createButtonProps={{
+      children: "ایجاد دسته بندی"
+    }}
+    >
       <Table {...tableProps} rowKey="id">
         <Table.Column dataIndex="id" title="شناسه" />
         <Table.Column dataIndex="name" title="نام" 

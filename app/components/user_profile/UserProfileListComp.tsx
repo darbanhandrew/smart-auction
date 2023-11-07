@@ -29,13 +29,17 @@ export const UserProfileListComp: React.FC<IResourceComponentsProps> = () => {
 
 
     return (
-        <List>
+        <List
+        createButtonProps={{
+            children:"ایجاد پروفایل کاربر"
+        }}
+        >
             <Table {...tableProps} rowKey="id">
                 <Table.Column dataIndex="id" title="شناسه" />
-                <Table.Column dataIndex="phone_number" title="Phone Number" />
+                <Table.Column dataIndex="phone_number" title="شماره تلفن" />
                 <Table.Column
                     dataIndex={["email"]}
-                    title="Email"
+                    title="ایمیل"
                     render={(value: any) => <EmailField value={value} />}
                 />
                 <Table.Column dataIndex={["user_id"]} title="کاربر" />

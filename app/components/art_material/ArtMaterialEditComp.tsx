@@ -13,7 +13,12 @@ export const ArtMaterialEditComp: React.FC<IResourceComponentsProps> = () => {
     <Edit saveButtonProps={{
       ...saveButtonProps,
       children: "ذخیره",
-    }}>
+    }}
+    deleteButtonProps={{
+      children:"حذف"
+    }}
+    title="ویرایش ماده"
+    >
       <Form {...formProps} layout="vertical">
         <h1>
           <strong>{artMaterialData?.id}</strong>

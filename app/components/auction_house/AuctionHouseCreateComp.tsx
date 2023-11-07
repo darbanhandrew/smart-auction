@@ -55,7 +55,9 @@ export const AuctionHouseCreateComp: React.FC<
     <Create saveButtonProps={{
       ...saveButtonProps,
       children: "ذخیره",
-    }}>
+    }}
+    title="ایجاد خانه حراج"
+    >
       <Form {...formProps} layout="vertical" onFinish={handleOnFinish}>
         <Form.Item
           label="نام"

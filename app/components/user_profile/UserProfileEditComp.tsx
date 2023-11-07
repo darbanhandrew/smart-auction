@@ -54,7 +54,9 @@ export function UserProfileEditComp(data: any) {
         <Edit saveButtonProps={{
             ...saveButtonProps,
             children: "ذخیره",
-        }}>
+        }}
+        title="ویرایش پروفایل کاربر"
+        >
             <Form {...formProps} layout="vertical" onFinish={handleOnFinish}>
                 <h1>
                     <Link to={`/user/edit/${userProfileData?.user_id}/`}>
@@ -63,7 +65,7 @@ export function UserProfileEditComp(data: any) {
                 </h1>
 
                 <Form.Item
-                    label="Phone Number"
+                    label="شماره تلفن"
                     name={["phone_number"]}
                     rules={[
                         {
@@ -74,7 +76,7 @@ export function UserProfileEditComp(data: any) {
                     <Input />
                 </Form.Item>
                 <Form.Item
-                    label="Email"
+                    label="ایمیل"
                     name={["email"]}
                     rules={[
                         {
@@ -85,50 +87,50 @@ export function UserProfileEditComp(data: any) {
                     <Input />
                 </Form.Item>
                 <Form.Item
-                    label="First Name"
+                    label="نام"
                     name={["first_name"]}
                 >
                     <Input />
                 </Form.Item>
                 <Form.Item
-                    label="Last Name"
+                    label="نام خانوادگی"
                     name={["last_name"]}
                 >
                     <Input />
                 </Form.Item>
                 <Form.Item
-                    label="Sheba"
+                    label="شبا"
                     name={["sheba"]}
                 >
                     <Input />
                 </Form.Item>
                 <Form.Item
-                    label="Country"
+                    label="کشور"
                     name={["country"]}
                 >
                     <Input />
                 </Form.Item>
                 <Form.Item
-                    label="Province"
+                    label="محله"
                     name={["province"]}
                 >
                     <Input />
                 </Form.Item>
 
                 <Form.Item
-                    label="City"
+                    label="شهر"
                     name={["city"]}
                 >
                     <Input />
                 </Form.Item>
                 <Form.Item
-                    label="Address"
+                    label="آدرس"
                     name={["address"]}
                 >
                     <Input />
                 </Form.Item>
                 <Form.Item
-                    label="Postal Code"
+                    label="کد پستی"
                     name={["postal_code"]}
                 >
                     <Input />
@@ -153,7 +155,7 @@ export function UserProfileEditComp(data: any) {
                     </Select>
                 </Form.Item>
                 <Form.Item
-                    label="Note"
+                    label="یادداشت"
                     name={["note"]}
                 >
                     <Input />

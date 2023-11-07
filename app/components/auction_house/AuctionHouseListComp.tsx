@@ -17,7 +17,11 @@ export const AuctionHouseListComp: React.FC<IResourceComponentsProps> = () => {
     syncWithLocation: true,
   });
   return (
-    <List>
+    <List
+    createButtonProps={{
+      children:"ایجاد خانه حراج"
+    }}
+    >
       <Table {...tableProps} rowKey="id">
         <Table.Column dataIndex="id" title="شناسه" />
         <Table.Column dataIndex="name" title="نام" 
