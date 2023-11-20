@@ -1,12 +1,13 @@
 import type { LoaderArgs } from "@remix-run/node";
 import { redirect } from "@remix-run/node";
 import { Outlet } from "@remix-run/react";
-
+import { Authenticated } from "@refinedev/core";
 import { authProvider } from "~/authProvider";
 
 export default function AuthLayout() {
   // no layout is applied for the auth routes
-  return <Outlet />;
+  
+  return <Authenticated><Outlet/></Authenticated>
 }
 
 /**
@@ -14,12 +15,12 @@ export default function AuthLayout() {
  * Alternatively, we could also use the `Authenticated` component inside the `AuthLayout` to handle the redirect.
  * But, server-side redirects are more performant.
  */
-export async function loader({ request }: LoaderArgs) {
-  const { authenticated, redirectTo } = await authProvider.check(request);
+// export async function loader({ request }: LoaderArgs) {
+//   const { authenticated, redirectTo } = await authProvider.check(request);
 
-  if (authenticated) {
-    throw redirect(redirectTo ?? "/");
-  }
+//   if (authenticated) {
+//     throw redirect(redirectTo ?? "/");
+//   }
 
-  return {};
-}
+//   return {};
+// }
