@@ -4,35 +4,38 @@ import * as cookie from "cookie";
 import Cookies from "js-cookie";
 import * as setCookie from "set-cookie-parser";
 import { account, appwriteClient, TOKEN_KEY,AppwriteHostname,SsrHostname,APPWRITE_PROJECT, APPWRITE_URL } from "./utility";
+// import { createCookieSee/ssionStorage } from "@remix-run/node"; // or cloudflare/deno
+
 const sessionNames = [
   "a_session_" + APPWRITE_PROJECT.toLowerCase(),
   "a_session_" + APPWRITE_PROJECT.toLowerCase() + "_legacy",
 ];
+// const storage =
+//   createCookieSessionStorage(
+//     {
+//       // a Cookie from `createCookie` or the CookieOptions to create one
+//       cookie: {
+//         name: sessionNames[0],
+
+//         // all of these are optional
+//         // Expires can also be set (although maxAge overrides it when used in combination).
+//         // Note that this method is NOT recommended as `new Date` creates only one date on each server deployment, not a dynamic date in the future!
+//         //
+//         // expires: new Date(Date.now() + 60_000),
+//         httpOnly: true,
+//         maxAge: 60*60*24*365,
+//         path: "/",
+//         sameSite: "lax",
+//         secrets: ["s3cret1"],
+//         secure: true
+//       },
+//     }
+//   );
+
 export const authProvider: AuthBindings = {
   login: async ({ email, password }) => {
     try {
       await account.createEmailSession(email, password);
-
-      const ssrHostname =
-      SsrHostname === "localhost" ? SsrHostname : "." + SsrHostname;
-    const appwriteHostname =
-      AppwriteHostname === "localhost"
-        ? AppwriteHostname
-        : "." + AppwriteHostname;
-      const sessionCookie = Cookies.get(sessionNames[0])
-      const sessionCookieLegacy= Cookies.get(sessionNames[1])
-      const sesssionCookiesStr = (sessionCookie ?? "")
-      .split(appwriteHostname)
-      .join(ssrHostname);
-      const sessionCookieLegacyStr = (sessionCookieLegacy??"").split(appwriteHostname)
-      .join(ssrHostname);
-
-      const { jwt } = await account.createJWT();
-
-      if (jwt) {
-        Cookies.set(TOKEN_KEY, jwt);
-      }
-
       return {
         success: true,
         redirectTo: "/",
@@ -52,16 +55,16 @@ export const authProvider: AuthBindings = {
     try {
       await account.deleteSession("current");
     } catch (error: any) {
-      Cookies.remove(TOKEN_KEY);
-      appwriteClient.setJWT("");
+      // const session = await storage.getSession(request.headers.get("Cookie"))
       return {
         success: false,
         error,
         redirectTo: "/login",
+        headers:{
+          // "Set-Cookie":await storage.destroySession(session),
+        }
       };
     }
-    Cookies.remove(TOKEN_KEY);
-    appwriteClient.setJWT("");
 
     return {
       success: true,
@@ -72,44 +75,47 @@ export const authProvider: AuthBindings = {
     console.error(error);
     return { error };
   },
-  check: async (request) => {
+  check: async () => {
     // for server side authentication
     // let token = undefined;
     // const hasCookie = request.headers.get("Cookie");
     // if (hasCookie) {
     //   const parsedCookie = cookie.parse(request.headers.get("Cookie"));
-    //   token = parsedCookie[TOKEN_KEY];
+    //   token = parsedCookie[sessionNames[0]];
       
     // } else {
-    //   const parsedCookie = Cookies.get(TOKEN_KEY);
+    //   const parsedCookie = Cookies.get(sessionNames[0]);
     //   token = parsedCookie ? JSON.parse(parsedCookie) : undefined;
     // }
-
+    // const cookieSession = await storage.getSession(request.headers.get("Cookie"));
+    // cookieSession.set("a_session_smart_auction",token)
     // if (token) {
     //   appwriteClient.setJWT(token);
     // }
 
-    const { pathname } = new URL(request.url);
-    const query = pathname === "/" ? "" : `?to=${encodeURIComponent(pathname)}`;
 
     try {
       const session = await account.get();
-
+      console.log(session)
       if (session) {
+        console.log("I am here")
         return {
           authenticated: true,
         };
       }
     } catch (error: any) {
       //refresh token if expire
+      // await account.deleteSession("current");
+      console.log("i am here")
       return {
         authenticated: false,
         error: error,
         logout: true,
-        redirectTo: `/login${query}`,
+        // redirectTo: `/login${query}`,
       };
     }
-
+    console.log("i am here2")
+    // await account.deleteSession("current");
     return {
       authenticated: false,
       error: {
@@ -117,12 +123,12 @@ export const authProvider: AuthBindings = {
         name: "Unauthenticated",
       },
       logout: true,
-      redirectTo: `/login${query}`,
+      // redirectTo: `/login${query}`,
     };
   },
   getPermissions: async () => null,
   getIdentity: async () => {
-    const user = await account.get();
+    const user = 1
 
     if (user) {
       return user;
