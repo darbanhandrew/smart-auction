@@ -86,8 +86,14 @@ export const authProvider: AuthBindings = {
     let authenticated = undefined
     if (request) {
       // for SSR
-      const parsedCookie = cookie.parse(request.headers.get("Cookie"));
-      authenticated = parsedCookie[COOKIE_NAME];
+      try{
+        const parsedCookie = cookie.parse(request.headers.get("Cookie"));
+        authenticated = parsedCookie[COOKIE_NAME];
+      }
+      catch {
+        authenticated="false";
+      }
+
     } else {
       // for CSR
       const authenticated = Cookies.get(COOKIE_NAME);
