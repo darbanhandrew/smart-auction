@@ -7,7 +7,7 @@ import { authProvider } from "~/authProvider";
 export default function AuthLayout() {
   // no layout is applied for the auth routes
   
-  return <Authenticated v3LegacyAuthProviderCompatible={true}><Outlet/></Authenticated>
+  return <Authenticated><Outlet/></Authenticated>
 }
 
 /**

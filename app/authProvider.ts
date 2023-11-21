@@ -77,23 +77,11 @@ export const authProvider: AuthBindings = {
   },
   check: async () => {
     // for server side authentication
-    // let token = undefined;
-    // const hasCookie = request.headers.get("Cookie");
-    // if (hasCookie) {
-    //   const parsedCookie = cookie.parse(request.headers.get("Cookie"));
-    //   token = parsedCookie[sessionNames[0]];
-      
-    // } else {
-    //   const parsedCookie = Cookies.get(sessionNames[0]);
-    //   token = parsedCookie ? JSON.parse(parsedCookie) : undefined;
-    // }
-    // const cookieSession = await storage.getSession(request.headers.get("Cookie"));
-    // cookieSession.set("a_session_smart_auction",token)
-    // if (token) {
-    //   appwriteClient.setJWT(token);
-    // }
+    let token = undefined;
+    const parsedCookie = Cookies.get(sessionNames[0]);
+    token = parsedCookie ? JSON.parse(parsedCookie) : undefined;
 
-
+    if(token){
     try {
       const session = await account.get();
       console.log(session)
@@ -101,6 +89,7 @@ export const authProvider: AuthBindings = {
         console.log("I am here")
         return {
           authenticated: true,
+          redirectTo:`/`
         };
       }
     } catch (error: any) {
@@ -108,22 +97,16 @@ export const authProvider: AuthBindings = {
       // await account.deleteSession("current");
       console.log("i am here")
       return {
-        authenticated: false,
-        error: error,
-        logout: true,
-        // redirectTo: `/login${query}`,
+        authenticated: true,
+        redirectTo: `/login`,
       };
     }
+  }
     console.log("i am here2")
     // await account.deleteSession("current");
     return {
-      authenticated: false,
-      error: {
-        message: "Check failed",
-        name: "Unauthenticated",
-      },
-      logout: true,
-      // redirectTo: `/login${query}`,
+      authenticated: true,
+      redirectTo: `/login`,
     };
   },
   getPermissions: async () => null,
