@@ -36,6 +36,7 @@ export const authProvider: AuthBindings = {
   login: async ({ email, password }) => {
     try {
       await account.createEmailSession(email, password);
+      Cookies.set("authenticated","true");
       return {
         success: true,
         redirectTo: "/",
@@ -54,6 +55,7 @@ export const authProvider: AuthBindings = {
   logout: async () => {
     try {
       await account.deleteSession("current");
+      Cookies.set("authenticated","false");
     } catch (error: any) {
       // const session = await storage.getSession(request.headers.get("Cookie"))
       return {
@@ -75,38 +77,47 @@ export const authProvider: AuthBindings = {
     console.error(error);
     return { error };
   },
-  check: async () => {
+  check: async (request) => {
     // for server side authentication
     let token = undefined;
+    const COOKIE_NAME= "authenticated";
     const parsedCookie = Cookies.get(sessionNames[0]);
     token = parsedCookie ? JSON.parse(parsedCookie) : undefined;
-
-    if(token){
-    try {
-      const session = await account.get();
-      console.log(session)
-      if (session) {
-        console.log("I am here")
-        return {
-          authenticated: true,
-          redirectTo:`/`
-        };
-      }
-    } catch (error: any) {
-      //refresh token if expire
-      // await account.deleteSession("current");
-      console.log("i am here")
-      return {
-        authenticated: true,
-        redirectTo: `/login`,
-      };
+    let authenticated = undefined
+    if (request) {
+      // for SSR
+      const parsedCookie = cookie.parse(request.headers.get("Cookie"));
+      authenticated = parsedCookie[COOKIE_NAME];
+    } else {
+      // for CSR
+      const authenticated = Cookies.get(COOKIE_NAME);
     }
-  }
-    console.log("i am here2")
+    const isAuthenticated = authenticated == "true"? true:false;
+  //   if(isAuthenticated){
+  //   try {
+  //     const session = await account.get();
+  //     console.log(session)
+  //     if (session) {
+  //       console.log("I am here")
+  //       return {
+  //         authenticated: true,
+  //         redirectTo:`/`
+  //       };
+  //     }
+  //   } catch (error: any) {
+  //     //refresh token if expire
+  //     // await account.deleteSession("current");
+  //     console.log("i am here")
+  //     return {
+  //       authenticated: false,
+  //     };
+  //   }
+  // }
+  //   console.log("i am here2")
     // await account.deleteSession("current");
     return {
-      authenticated: true,
-      redirectTo: `/login`,
+      authenticated: isAuthenticated,
+      redirectTo:isAuthenticated?'/':'/login'
     };
   },
   getPermissions: async () => null,
