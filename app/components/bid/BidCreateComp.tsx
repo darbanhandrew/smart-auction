@@ -15,11 +15,17 @@ export const BidCreateComp: React.FC<IResourceComponentsProps> = () => {
   // }
   const { selectProps: auctionArtSelectProps } = useSelect({
     resource: "auction_art",
-    optionLabel: "lot",
+    optionLabel:"$id",
+    pagination:{
+      pageSize:1000
+    }
   });
   //useList and get all user profiles for select
   const { data: userProfiles } = useList({
     resource: "user_profile",
+    pagination: {
+      pageSize: 1000,
+    },
   });
   return (
     <Create saveButtonProps={{
