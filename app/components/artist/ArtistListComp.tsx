@@ -1,5 +1,5 @@
-import React from "react";
-import { IResourceComponentsProps, BaseRecord, useMany, CrudFilters } from "@refinedev/core";
+import React, { useEffect, useState } from "react";
+import { IResourceComponentsProps, BaseRecord, useMany, CrudFilters, useList, BaseKey } from "@refinedev/core";
 import {
   useTable,
   List,
@@ -9,14 +9,25 @@ import {
   getDefaultSortOrder,
 } from "@refinedev/antd";
 import dayjs from "dayjs";
-import { Table, Space, Col, Row, Form, Input, Button } from "antd";
-import { SearchOutlined } from "@ant-design/icons";
-function isEmpty(str:string) {
-  return (!str || str.length === 0 );
+import { Table, Space, Col, Row, Form, Input, Button, AutoComplete } from "antd";
+import { CloseOutlined, SearchOutlined } from "@ant-design/icons";
+import { useLoaderData, useNavigate, useSearchParams } from "@remix-run/react";
+// import { loader } from "~/routes/_layout.artist._index";
+function isEmpty(str: string) {
+  return (!str || str.length === 0);
+}
+interface Ioptions {
+  label: any,
+  value: BaseKey | undefined
 }
 export const ArtistListComp: React.FC<IResourceComponentsProps> = () => {
-  const { tableProps, sorter, searchFormProps,setFilters } = useTable({
-    syncWithLocation: true,
+  // const initialArtists = useLoaderData<typeof loader>();
+  const [searchParams, setSearchParams] = useSearchParams();
+  const [artistValue, setArtistValue] = useState<string>("");
+  const [options, setOptions] = useState<Ioptions[]>([]);
+  const navigate = useNavigate();
+  const { tableProps, sorter, searchFormProps, setFilters, filters } = useTable({
+    syncWithLocation: false,
     sorters: {
       initial: [
         {
@@ -25,38 +36,58 @@ export const ArtistListComp: React.FC<IResourceComponentsProps> = () => {
         },
       ]
     },
-    onSearch: (params: { q: string }) => {
-      const filters: CrudFilters = [];
-      const { q } = params;
-      console.log(q);
-      if (isEmpty(q) || q === undefined) {
-        setFilters([]); // Clear filters
-        console.log(q);
-        return filters;
-      }
-        filters.push(
-          {
-            field: "name",
-            operator: "contains",
-            value: q,
-          }
-        );
-      return filters;
-    },
   });
-
+  const { refetch: refetchArtists } = useList(
+    {
+      resource: "artist",
+      filters: [{ field: "name", operator: "contains", value: artistValue }],
+      queryOptions: {
+        // initialData:initialArtists,
+        onSuccess: (data) => {
+          const artistOptionGroup = data.data.map((item) => ({ label: item.name, value: item.name }));
+          setOptions(artistOptionGroup);
+        }
+      }
+    }
+  )
+  useEffect(() => {
+    setOptions([]);
+    refetchArtists();
+  }, [artistValue]
+  );
   return (
     <Col>
-      <Form layout="vertical" {...searchFormProps}>
-        <Form.Item label="نام و نام خانوادگی" name="q">
-          <Input placeholder="نام و نام خانوادگی" prefix={<SearchOutlined />} />
-        </Form.Item>
-        <Form.Item>
-          <Button htmlType="submit" type="primary">
-            جستجو
-          </Button>
-        </Form.Item>
-      </Form>
+      <AutoComplete
+        options={options}
+        style={{ width: "100%", maxWidth: "550px" }}
+        onSearch={(value: string) => setArtistValue(value)}
+        filterOption={false}
+        onSelect={(value: string) => {
+          {
+            console.log(filters);
+            if (isEmpty(value) || value === undefined) {
+              setFilters([],"replace");
+              return
+            }
+            setFilters([
+              {
+                field: "name",
+                operator: "eq",
+                value: value,
+              }],"replace"
+            );
+          }
+        }
+        }
+        onClear={() => {
+          setFilters([],"replace");
+        }
+        }
+        clearIcon={<CloseOutlined />}
+        allowClear={true}
+      >
+        <Input placeholder="نام و نام خانوادگی" prefix={<SearchOutlined />} />
+      </AutoComplete>
       <List
         createButtonProps={{
           children: "ایجاد هنرمند"

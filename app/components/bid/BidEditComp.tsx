@@ -6,13 +6,14 @@ import dayjs from "dayjs";
 
 export const BidEditComp: React.FC<IResourceComponentsProps> = () => {
     const { formProps, saveButtonProps, queryResult, onFinish } = useForm();
+    
     const bidData = queryResult?.data?.data;
-    // const handleOnFinish = async (values: any) => {
-    //   onFinish({
-    //     ...values,
-    //     user_id: values.user_profile
-    //   });
-    // }
+    const handleOnFinish = async (values: any) => {
+      onFinish({
+        ...values,
+        manual_update:true,
+      });
+    }
     const { selectProps: auctionArtSelectProps } = useSelect({
         resource: "auction_art",
     });
@@ -30,7 +31,7 @@ export const BidEditComp: React.FC<IResourceComponentsProps> = () => {
         }}
         title="ویرایش پیشنهاد"
         >
-            <Form {...formProps} layout="vertical">
+            <Form {...formProps} layout="vertical" onFinish={handleOnFinish}>
                 <Form.Item
                     label="Amount"
                     name={["amount"]}
