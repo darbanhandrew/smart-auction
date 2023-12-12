@@ -56,21 +56,47 @@ export const ArtEditComp: React.FC<IResourceComponentsProps> = () => {
         value,
       },
     ],
+    defaultValue:artData?.artist?.map((artist: any) => artist.$id),
   });
 
   const { selectProps: artCategorySelectProps } = useSelect({
     resource: "art_category",
     optionLabel: "name",
+    onSearch: (value: string) => [
+      {
+        field: "name",
+        operator: "contains",
+        value,
+      },
+    ],
+    defaultValue:artData?.art_category?.$id,
+    
   });
 
   const { selectProps: artTechniqueSelectProps } = useSelect({
     resource: "art_technique",
     optionLabel: "name",
+    onSearch: (value: string) => [
+      {
+        field: "name",
+        operator: "contains",
+        value,
+      },
+    ],
+    defaultValue:artData?.art_technique?.$id,
   });
 
   const { selectProps: artMaterialSelectProps } = useSelect({
     resource: "art_material",
     optionLabel: "name",
+    onSearch: (value: string) => [
+      {
+        field: "name",
+        operator: "contains",
+        value,
+      },
+    ],
+    defaultValue:artData?.art_technique?.$id,
   });
   const { selectProps: auctionArtSelectProps } = useSelect({
     resource: "auction_art",
@@ -176,9 +202,10 @@ export const ArtEditComp: React.FC<IResourceComponentsProps> = () => {
               required: true,
             },
           ]}
+          // valuePropName = "option"
+          // valuePropName="value"
         >
           <Select {...artistSelectProps} mode="multiple"
-
           />
         </Form.Item>
         <Form.Item

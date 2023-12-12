@@ -1,4 +1,4 @@
-import { Account, Appwrite, Storage, Functions } from "@refinedev/appwrite";
+import { Account, Appwrite, Storage, Functions,Databases } from "@refinedev/appwrite";
 
 const APPWRITE_URL = "https://server.admin.smartauctionhouse.com/v1";
 const APPWRITE_PROJECT = "smart_auction";
@@ -13,6 +13,7 @@ appwriteClient.setEndpoint(APPWRITE_URL).setProject(APPWRITE_PROJECT);
 const account = new Account(appwriteClient);
 const storage = new Storage(appwriteClient);
 const functions = new Functions(appwriteClient);
+const databases = new Databases(appwriteClient);
 const AppwriteService = {
 	signOut: async () => {
 		await account.deleteSession('current');
@@ -26,4 +27,4 @@ const AppwriteService = {
 		appwriteClient.headers['X-Fallback-Cookies'] = JSON.stringify(authCookies);
 	}
 };
-export { appwriteClient, account, storage, functions, TOKEN_KEY,SsrHostname, AppwriteHostname, AppwriteService,APPWRITE_PROJECT,APPWRITE_URL };
+export { appwriteClient,databases, account, storage, functions, TOKEN_KEY,SsrHostname, AppwriteHostname, AppwriteService,APPWRITE_PROJECT,APPWRITE_URL };

@@ -38,6 +38,15 @@ export const ArtListComp: React.FC<IResourceComponentsProps> = () => {
         sorter={{multiple:2}}
         defaultSortOrder={getDefaultSortOrder("name",sorter)}
         />
+        <Table.Column dataIndex={["artist"]} title="نام هنرمند" 
+          render={(artist:any) => 
+          {
+            const artistNames = artist.map((artist: any) => artist.name).join(" - ");
+            if(artistNames) return artistNames;
+            return "هنرمند ندارد"
+          }
+        }
+        />
         <Table.Column
           dataIndex={["art_category", "name"]}
           title="دسته بندی"

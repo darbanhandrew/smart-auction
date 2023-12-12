@@ -26,6 +26,26 @@ export const ArtistListComp: React.FC<IResourceComponentsProps> = () => {
   const [artistValue, setArtistValue] = useState<string>("");
   const [options, setOptions] = useState<Ioptions[]>([]);
   const navigate = useNavigate();
+  const handleClear = () => {
+    setArtistValue('');
+    setFilters([], "replace");
+  }
+  const onSearchArtist = (artist: string) => {
+    {
+      console.log(filters);
+      if (isEmpty(artist) || artist === undefined) {
+        setFilters([], "replace");
+        return
+      }
+      setFilters([
+        {
+          field: "name",
+          operator: "contains",
+          value: artist,
+        }], "replace"
+      );
+    }
+  }
   const { tableProps, sorter, searchFormProps, setFilters, filters } = useTable({
     syncWithLocation: false,
     sorters: {
@@ -57,37 +77,35 @@ export const ArtistListComp: React.FC<IResourceComponentsProps> = () => {
   );
   return (
     <Col>
-      <AutoComplete
-        options={options}
-        style={{ width: "100%", maxWidth: "550px" }}
-        onSearch={(value: string) => setArtistValue(value)}
-        filterOption={false}
-        onSelect={(value: string) => {
-          {
-            console.log(filters);
-            if (isEmpty(value) || value === undefined) {
-              setFilters([],"replace");
-              return
+      <Row align="middle" gutter={16}>
+        <Space>
+          <AutoComplete
+            options={options}
+            onSearch={(value) => setArtistValue(value)}
+            onSelect={(value) => {
+              setArtistValue(value);
+              onSearchArtist(value);
             }
-            setFilters([
-              {
-                field: "name",
-                operator: "eq",
-                value: value,
-              }],"replace"
-            );
-          }
-        }
-        }
-        onClear={() => {
-          setFilters([],"replace");
-        }
-        }
-        clearIcon={<CloseOutlined />}
-        allowClear={true}
-      >
-        <Input placeholder="نام و نام خانوادگی" prefix={<SearchOutlined />} />
-      </AutoComplete>
+            }
+            filterOption={false}
+            value={artistValue}
+          // style={{ width: '100%', maxWidth: '550px' }}
+          >
+            <Input
+              placeholder="نام و نام خانوادگی"
+            // onSearch={(value) => onSearchArtist(value)}
+            />
+          </AutoComplete>
+          <Button onClick={() => onSearchArtist(artistValue)} type="primary" icon={<SearchOutlined />}>
+            جستجو
+          </Button>
+          {artistValue && (
+            <Button onClick={handleClear} icon={<CloseOutlined />}>
+              بازنشانی جستجو
+            </Button>
+          )}
+        </Space>
+      </Row>
       <List
         createButtonProps={{
           children: "ایجاد هنرمند"

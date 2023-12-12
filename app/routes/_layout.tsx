@@ -1,4 +1,7 @@
-import { ThemedLayoutV2, ThemedTitleV2 } from "@refinedev/antd";
+import { ThemedLayoutV2 } from "../components/themedLayout";                                        
+import { ThemedHeaderV2 } from "../components/themedLayout/header";                                   
+import { ThemedSiderV2 } from "../components/themedLayout/sider";                                     
+import { ThemedTitleV2 } from "../components/themedLayout/title"; 
 import { Outlet } from "@remix-run/react";
 import { useEffect } from "react";
 import type { LoaderArgs } from "@remix-run/node";
@@ -51,6 +54,7 @@ export default function BaseLayout() {
             icon={<AppIcon />}
           />
         )}
+        Sider={ThemedSiderV2}
       >
         <Outlet />
       </ThemedLayoutV2>

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { IResourceComponentsProps, BaseRecord, useOne, useList } from "@refinedev/core";
 import {
   useTable,
@@ -11,6 +11,7 @@ import {
 } from "@refinedev/antd";
 import { Table, Space } from "antd";
 import dayjs from "dayjs";
+import { databases } from "~/utility";
 export const BidListComp: React.FC<IResourceComponentsProps> = () => {
   const { tableProps, sorter } = useTable({
     syncWithLocation: true,
@@ -28,10 +29,16 @@ export const BidListComp: React.FC<IResourceComponentsProps> = () => {
   //get all user profiles and all arts
   const { data: arts } = useList({
     resource: "art",
+    pagination:
+    {
+      pageSize:1000,
+    },
   });
-  const { data: userProfiles } = useList({
-    resource: "user_profile",
-  });
+  useEffect(()=>{
+  },[arts]);
+  // const { data: userProfiles } = useList({
+  //   resource: "user_profile",
+  // });
   return (
     <List
     createButtonProps={{
@@ -60,7 +67,6 @@ export const BidListComp: React.FC<IResourceComponentsProps> = () => {
           sorter={{multiple:3}}
           defaultSortOrder={getDefaultSortOrder("status", sorter)}
         />
-
         <Table.Column
           title="نام اثر"
           dataIndex={["auction_art", "art", "name"]}
@@ -79,7 +85,7 @@ export const BidListComp: React.FC<IResourceComponentsProps> = () => {
           defaultSortOrder={getDefaultSortOrder("$updatedAt", sorter)}
           render={(value: any) => <span><>{dayjs(value).format("YYYY/MM/DD HH:MM:ss")}</></span>}
         />
-        <Table.Column
+        {/* <Table.Column
           title="نام کاربر"
           dataIndex={["user_id"]}
           //find the user profile object from user profiles using user id
@@ -91,21 +97,30 @@ export const BidListComp: React.FC<IResourceComponentsProps> = () => {
             }
             return "";
           }}
-        />
-        {/* <Table.Column
-          title="نام هنرمند"
-          dataIndex={["auction_art", "art", "id"]}
-          // get the artist name from the art id using useOne
-          render={(_, record: BaseRecord) => {
-            // find the art object from arts using art id 
-            const art = arts?.find((art: any) => art.id === record);
-            // return art.artist.name - art.art_material - art.size
-            if (art) {
-              return `${art.artist.name} - ${art.art_material.name} - ${art.size}`;
-            }
-            return "";
-          }}
         /> */}
+<Table.Column
+  title="نام هنرمند"
+  dataIndex={["auction_art", "art"]}
+  // get the artist name from the art id using useOne
+  render={(art) => {
+    // find the art object from arts using art id 
+    const artId = art.$id.toString();
+    if(artId)
+    {
+      if(arts != undefined && arts.data)
+      {
+        for (let i = 0; i < arts.data.length; i++) {
+          if(arts.data[i].id == artId){
+            const artistNames = arts.data[i].artist.map((artist: any) => artist.name).join(" - ");
+            return artistNames;
+          }
+          
+        }
+      }
+    }
+    return "در حال بارگذاری...";
+  }}
+  />
         {/* <Table.Column dataIndex={["user_id"]} title="کاربر شناسه" /> */}
         <Table.Column
           title="عملیات"

@@ -1,7 +1,7 @@
 import React from "react";
 import { IResourceComponentsProps } from "@refinedev/core";
 import { Create, useForm, useSelect } from "@refinedev/antd";
-import { Form, Input, Select } from "antd";
+import { AutoComplete, Form, Input, Select } from "antd";
 import dayjs from "dayjs";
 import { DatePicker } from "antd-jalali";
 import { UploadFile } from "antd/lib/upload";
@@ -39,17 +39,44 @@ export const ArtCreateComp: React.FC<IResourceComponentsProps> = () => {
   const { selectProps: artCategorySelectProps } = useSelect({
     resource: "art_category",
     optionLabel: "name",
-
+    onSearch: (value: string) => [
+      {
+        field: "name",
+        operator: "contains",
+        value,
+      },
+    ],
   });
 
   const { selectProps: artTechniqueSelectProps } = useSelect({
     resource: "art_technique",
     optionLabel: "name",
+    onSearch: (value: string) => {
+      if (value != undefined || value=="") {
+        return [
+          {
+            field: "name",
+            operator: "contains",
+            value,
+          },
+        ];
+      }
+    else {
+      return [];
+    }
+    }
   });
 
   const { selectProps: artMaterialSelectProps } = useSelect({
     resource: "art_material",
     optionLabel: "name",
+    onSearch: (value: string) => [
+      {
+        field: "name",
+        operator: "contains",
+        value,
+      },
+    ],
   });
 
   return (
@@ -57,7 +84,7 @@ export const ArtCreateComp: React.FC<IResourceComponentsProps> = () => {
       ...saveButtonProps,
       children: "ذخیره",
     }}
-    title="ایجاد اثر"
+      title="ایجاد اثر"
     >
       <Form {...formProps} layout="vertical" onFinish={handleOnFinish}>
         <Form.Item
@@ -145,7 +172,7 @@ export const ArtCreateComp: React.FC<IResourceComponentsProps> = () => {
             },
           ]}
         >
-          <Select {...artMaterialSelectProps} />
+          <Select {...artMaterialSelectProps} allowClear={true} />
         </Form.Item>
         <Form.Item
           label="تکنیک"
@@ -156,7 +183,7 @@ export const ArtCreateComp: React.FC<IResourceComponentsProps> = () => {
             },
           ]}
         >
-          <Select {...artTechniqueSelectProps} />
+          <Select {...artTechniqueSelectProps} allowClear={true} />
         </Form.Item>
         <Form.Item
           label="دسته بندی"
@@ -167,7 +194,7 @@ export const ArtCreateComp: React.FC<IResourceComponentsProps> = () => {
             },
           ]}
         >
-          <Select {...artCategorySelectProps} />
+          <Select {...artCategorySelectProps} allowClear={true} />
         </Form.Item>
         {/* <Form.Item
           label="Auction Art"

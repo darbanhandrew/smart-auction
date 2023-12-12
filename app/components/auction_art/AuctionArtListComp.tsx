@@ -42,7 +42,15 @@ export const AuctionArtListComp: React.FC<IResourceComponentsProps> = () => {
       <Table {...tableProps} rowKey="id">
         <Table.Column dataIndex="id" title="شناسه" />
         <Table.Column dataIndex={["art", "name"]} title="اثر" />
-        <Table.Column dataIndex={["art", "artist", "name"]} title="نام هنرمند" />
+        <Table.Column dataIndex={["art", "artist"]} title="نام هنرمند"
+          render={(artist:any) => 
+            {
+              const artistNames = artist.map((artist: any) => artist.name).join(" - ");
+              if(artistNames) return artistNames;
+              return "هنرمند ندارد"
+            }
+          }
+         />
         <Table.Column dataIndex={["auction", "name"]} title="نام حراج" />
         <Table.Column dataIndex="lot" title="Lot"
         sorter={{multiple:2}}
